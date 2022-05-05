@@ -1,0 +1,165 @@
+<div align="center">
+<h1>crisboarna.com</h1>
+<>
+  <a href="https://github.com/crisboarna/crisboarna.com/actions/workflows/merge_main.yaml">
+    <img src="https://github.com/crisboarna/crisboarna.com/workflows/CI/CD/badge.svg">
+  </a>
+  <a href="https://snyk.io/test/github/crisboarna/crisboarna.com">
+    <img src="https://snyk.io/test/github/crisboarna/crisboarna.com/badge.svg?targetFile=package.json">
+  </a>
+  <a href="https://codecov.io/gh/crisboarna/crisboarna.com">
+    <img src="https://img.shields.io/codecov/c/github/crisboarna/crisboarna.com.svg">
+  </a>
+  <a href="https://github.com/crisboarna/crisboarna.com">
+    <img src="https://img.shields.io/github/stars/crisboarna/crisboarna.com.svg">
+  </a>
+  <a href="http://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/github/license/crisboarna/crisboarna.com">
+  </a>
+  <a href="https://github.com/semantic-release/semantic-release">
+    <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)">
+  </a>
+  <a href="http://commitizen.github.io/cz-cli/">
+    <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square">
+  </a>
+    <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" >
+  <a href="https://github.com/crisboarna">
+    <img src="https://img.shields.io/badge/made%20by-crisboarna-blue.svg" >
+  </a>
+  <img src="./docs/images/header.png" width="100%">
+  <h2>
+    <a  href="https://cv.crisboarna.com">
+      Live Demo
+    </a>
+  </h2>
+</div>
+
+
+## Table of Contents
+
+* [How It Works](#how-it-works)
+* [Development](#development)
+    * [Installation](#installation)
+    * [Running](#running)
+    * [Building](#building)
+    * [Linting](#linting)
+    * [Testing](#testing)
+* [Infrastructure](#infrastructure)
+    * [Architectural Diagram](#architectural-diagram)
+    * [Cloudformation Resource Diagrams](#cloudformation-resource-diagrams)
+    * [Deployment from local](#deployment-from-local)
+* [License](#license)
+
+# Development
+**Languages and tools used**
+1. Typescript
+2. AWS CDK
+3. ReactJS
+4. Webpack
+5. Nx Monorepo
+
+
+## Installation
+```shell
+yarn install
+```
+
+## Running
+
+## Building
+Build can be triggered across all services (`api-mock`,`infra`,`web`) by running
+```shell
+yarn build
+```
+
+Alternatively each can be run individually via one of the commands
+```shell
+nx build api-mock
+nx build infra
+nx build web
+```
+
+## Linting
+Linting can be triggered across all services (`api-mock`,`infra`,`web`) by running
+```shell
+yarn lint
+```
+
+Alternatively each can be run individually via one of the commands
+```shell
+nx lint api-mock
+nx lint infra
+nx lint web
+```
+
+*Note*
+
+Infrastructure CDK code is linted with `eslint` and `cdk-nag`, the CDK equivalent of Cloudformation `cfn_nag` to ensure standard & best practice adherence by IaC.
+
+Other apps are linted with `eslint`.
+
+## Testing
+Tests can be run across all services (`api-mock`,`infra`,`web`) by running
+```shell
+yarn test
+```
+
+Alternatively each can be run individually via one of the commands
+```shell
+nx test api-mock
+nx test infra
+nx test web
+```
+
+Testing coverage is enforced globally via the individual `jest.config.js` as follows
+
+# Infrastructure
+## Architectural Diagram
+<img src="./docs/images/ArchitectureDiagram.png" width="100%">
+
+## Deployment order
+1. CI
+2. ACM
+3. Monitoring-Base
+4. Lambda
+5. API
+6. CDN
+7. S3
+8. Monitoring-Wrapper
+
+*Note* Deployment order is important as subsequent stacks have dependencies on previous ones.
+
+## Local deployment
+```shell
+cdk deploy -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts'
+cdk deploy -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts'
+cdk deploy -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts' -c GLOBAL_CONSTRUCTS=true
+cdk deploy -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts'
+cdk deploy -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts' -c GLOBAL_CONSTRUCTS=true
+cdk deploy -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts'
+cdk deploy -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts'
+cdk deploy -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts'
+```
+
+
+## Cloudformation Resource Diagrams
+These are the diagrams of all resources and their connections as generated by `cfn-diagram` from the CDK source code.
+
+To generate the diagram on the fly while tweaking the infrastructure run
+```shell
+nx diagram:ci infra
+nx diagram:acm infra
+nx diagram:monitoring-base infra
+nx diagram:lambda infra
+nx diagram:api infra
+nx diagram:cdn infra
+```
+
+<img src="./docs/images/.png" width="100%">
+<img src="./docs/images/.png" width="100%">
+<img src="./docs/images/.png" width="100%">
+
+## License
+[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
+
+Full license details can be found in [LICENSE.md](./LICENSE.md)

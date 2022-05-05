@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "projects": {
+    "api-interfaces": "libs/api-interfaces",
+    "api-mock": "apps/api/mock",
+    "infra": "apps/infra",
+    "web": "apps/web",
+    "web-e2e": "apps/web-e2e"
+  }
+}

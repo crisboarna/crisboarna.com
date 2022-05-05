@@ -1,0 +1,181 @@
+{
+  "root": "apps/infra",
+  "sourceRoot": "apps/infra/src",
+  "projectType": "application",
+  "targets": {
+    "diagram:cdn": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' > diagrams/template.yaml",
+          "cfn-dia html --template-file=diagrams/template.yaml"
+        ],
+        "parallel": false
+      }
+    },
+    "diagram:api": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts' > diagrams/template.yaml",
+          "cfn-dia html --template-file=diagrams/template.yaml"
+        ],
+        "parallel": false
+      }
+    },
+    "diagram:lambda": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts' > diagrams/template.yaml",
+          "cfn-dia html --template-file=diagrams/template.yaml"
+        ],
+        "parallel": false
+      }
+    },
+    "diagram:monitoring-wrapper": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts' > diagrams/template.yaml",
+          "cfn-dia html --template-file=diagrams/template.yaml"
+        ],
+        "parallel": false
+      }
+    },
+    "diagram:monitoring-base": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts' > diagrams/template.yaml",
+          "cfn-dia html --template-file=diagrams/template.yaml"
+        ],
+        "parallel": false
+      }
+    },
+    "diagram:acm": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts' > diagrams/template.yaml",
+          "cfn-dia html --template-file=diagrams/template.yaml"
+        ],
+        "parallel": false
+      }
+    },
+    "diagram:ci": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts' > diagrams/template.yaml",
+          "cfn-dia html --template-file=diagrams/template.yaml"
+        ],
+        "parallel": false
+      }
+    },
+    "deploy:cdn": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts'"
+        ]
+      }
+    },
+    "deploy:api": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts'"
+        ]
+      }
+    },
+    "deploy:lambda": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx build api-mock",
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts'"
+        ]
+      }
+    },
+    "deploy:monitoring-wrapper": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts'"
+        ]
+      }
+    },
+    "deploy:monitoring-base": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts'"
+        ]
+      }
+    },
+    "deploy:acm": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts'"
+        ]
+      }
+    },
+    "deploy:ci": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts'"
+        ]
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx lint-ts infra",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts'"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx lint-ts infra",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts'",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts'"
+        ]
+      }
+    },
+    "lint-ts": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/infra/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/infra"],
+      "options": {
+        "jestConfig": "apps/infra/jest.config.js",
+        "passWithNoTests": true,
+        "codeCoverage": true
+      }
+    }
+  },
+  "tags": []
+}
