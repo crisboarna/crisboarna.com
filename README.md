@@ -25,7 +25,8 @@
   <a href="https://github.com/crisboarna">
     <img src="https://img.shields.io/badge/made%20by-crisboarna-blue.svg" >
   </a>
-  <img src="./docs/images/header.png" width="100%">
+
+[//]: # (  <img src="./docs/images/header.png" width="100%">)
   <h2>
     <a  href="https://cv.crisboarna.com">
       Live Demo
@@ -113,7 +114,9 @@ Testing coverage is enforced globally via the individual `jest.config.js` as fol
 
 # Infrastructure
 ## Architectural Diagram
-<img src="./docs/images/ArchitectureDiagram.png" width="100%">
+WIP
+
+[//]: # (<img src="./docs/images/ArchitectureDiagram.png" width="100%">)
 
 ## Deployment order
 1. CI
@@ -152,10 +155,6 @@ nx diagram:lambda infra
 nx diagram:api infra
 nx diagram:cdn infra
 ```
-
-<img src="./docs/images/.png" width="100%">
-<img src="./docs/images/.png" width="100%">
-<img src="./docs/images/.png" width="100%">
 
 ## License
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
