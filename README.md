@@ -1,6 +1,5 @@
 <div align="center">
 <h1>crisboarna.com</h1>
-<>
   <a href="https://github.com/crisboarna/crisboarna.com/actions/workflows/merge_main.yaml">
     <img src="https://github.com/crisboarna/crisboarna.com/workflows/CI/CD/badge.svg">
   </a>
@@ -33,7 +32,6 @@
     </a>
   </h2>
 </div>
-
 
 ## Table of Contents
 

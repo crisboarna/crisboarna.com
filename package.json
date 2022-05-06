@@ -2,6 +2,11 @@
   "name": "crisboarna.com",
   "version": "1.0.0",
   "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "scripts": {
     "prepare": "husky install",
     "start": "nx serve",
