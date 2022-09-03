@@ -1,9 +1,11 @@
 import { cleanup, getByText, render, waitFor } from '@testing-library/react';
 import React from 'react';
-import App from './app';
+import Index from './app';
 
 describe('App', () => {
   afterEach(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     delete global['fetch'];
     cleanup();
   });
@@ -15,7 +17,7 @@ describe('App', () => {
       }),
     });
 
-    const { baseElement } = render(<App />);
+    const { baseElement } = render(<Index />);
     await waitFor(() => getByText(baseElement, 'my message'));
   });
 });

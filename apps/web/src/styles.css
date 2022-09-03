@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(./assets/fonts/Montserrat-ExtraLight.ttf) format('truetype');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(./assets/fonts/Montserrat-Light.ttf) format('truetype');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(./assets/fonts/Montserrat-Regular.ttf) format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(./assets/fonts/Montserrat-Medium.ttf) format('truetype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(./assets/fonts/Montserrat-SemiBold.ttf) format('truetype');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(./assets/fonts/Montserrat-Bold.ttf) format('truetype');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(./assets/fonts/Montserrat-Black.ttf) format('truetype');
+    font-weight: 900;
+}
+
+html, body {
+    font-family: "Montserrat", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.body_wrapper {
+    overflow: hidden;
+}
+
+.back_btn {
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: #4b5fa4;
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.back_btn:hover {
+    color: #6896ea;
+}
