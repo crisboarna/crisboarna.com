@@ -1,14 +1,104 @@
-import React from "react";
+import React from 'react';
+import Header from '../../components/header';
+import Banner from '../../components/banner';
 
 const Home = () => {
-    return <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to web!</h1>
-        <img
-            width="450"
-            src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-            alt="Nx - Smart, Fast and Extensible Build System"
-        />
+  return (
+    <div className={'body_wrapper'}>
+      <Header />
+      <Banner />
+      <div id={'about'}>
+        About
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+      <div id={'service'}>
+        Service
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+      <div id={'portfolio'}>
+        Portfolio
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+      <div id={'testimonial'}>
+        Testimonial
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+      <div id={'blog'}>
+        Blog
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+      <div id={'contact'}>
+        Contact
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
     </div>
-}
+  );
+};
 
 export default Home;
