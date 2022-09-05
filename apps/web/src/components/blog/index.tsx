@@ -9,8 +9,8 @@ const Blog = () => (
   <section className="blog_area" id="blog">
     <div className="container">
       <SectionTitle
-        title="Our Blog"
-        description="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
+        title="Blog"
+        description="Some of the latest thoughts and findings I shared on my blog."
       />
       <Reveal keyframes={fadeInUp} duration={1000} triggerOnce={true}>
         <div className="row">

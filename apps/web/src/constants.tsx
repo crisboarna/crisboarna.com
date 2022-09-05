@@ -128,8 +128,8 @@ export const contact = [
       },
       {
         id: 2,
-        icon: 'icon_linkedin',
-        text: 'Linkedin: https://www.linkedin.com/in/crisboarna',
+        icon: 'social_linkedin_circle',
+        text: 'LinkedIn: crisboarna',
         target: 'https://www.linkedin.com/in/crisboarna',
       },
     ],
