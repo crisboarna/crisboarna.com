@@ -7,7 +7,7 @@ const Portfolio = () => (
     <div className="container">
       <SectionTitle
         title="My Portfolio"
-        description="From my repertoire of past achievements."
+        description="From my repertoire of completed projects."
       />
       <PortfolioItems />
     </div>

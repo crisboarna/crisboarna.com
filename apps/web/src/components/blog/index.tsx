@@ -11,6 +11,8 @@ const Blog = () => (
       <SectionTitle
         title="Blog"
         description="Some of the latest thoughts and findings I shared on my blog."
+        url={'http://blog.crisboarna.com'}
+        urlTitle={'View blog'}
       />
       <Reveal keyframes={fadeInUp} duration={1000} triggerOnce={true}>
         <div className="row">

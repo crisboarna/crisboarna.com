@@ -111,6 +111,26 @@ h6 {
     margin-right: auto;
 }
 
+.title_p_url {
+    line-height: 26px;
+    margin-bottom: 0px;
+    max-width: 570px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: #797979;
+    -webkit-transition: color 0.3s linear;
+    -o-transition: color 0.3s linear;
+    transition: color 0.3s linear;
+    cursor: pointer;
+}
+
+.title_p_url:hover {
+    color: #040c2c;
+}
+
 /* Main title css
 ============================================================================================ */
 /*---------------------------------------------------- */
@@ -885,7 +905,7 @@ h6 {
 
 .portfolio_menu li:hover,
 .portfolio_menu li.active {
-    background: #040c2c;
+    background: #161F3C;
     color: #fff;
 }
 

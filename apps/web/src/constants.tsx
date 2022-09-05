@@ -132,6 +132,12 @@ export const contact = [
         text: 'LinkedIn: crisboarna',
         target: 'https://www.linkedin.com/in/crisboarna',
       },
+      {
+        id: 2,
+        icon: 'social_linkedin_circle',
+        text: 'LinkedIn: crisboarna',
+        target: 'https://www.linkedin.com/in/crisboarna',
+      },
     ],
   },
 ];
