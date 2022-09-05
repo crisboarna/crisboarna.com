@@ -3,6 +3,7 @@ import Header from '../../components/header';
 import Banner from '../../components/banner';
 import Services from '../../components/services';
 import Footer from '../../components/footer';
+import Contact from '../../components/contact';
 
 const Home = () => {
   return (
@@ -70,21 +71,7 @@ const Home = () => {
         <br />
         <br />
       </div>
-      <div id={'contact'}>
-        Contact
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </div>
+      <Contact />
       <Footer />
     </div>
   );

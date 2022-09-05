@@ -43,6 +43,20 @@ export const services = [
   },
 ];
 
+export const contact = [
+  {
+    id: '1',
+    title: 'Contact Info',
+    menuItems: [
+      {
+        id: 3,
+        icon: 'icon_mail',
+        text: 'Email: contact@crisboarna.com',
+      },
+    ],
+  },
+];
+
 export const socials = [
   {
     name: 'Facebook',
