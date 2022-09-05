@@ -10,33 +10,27 @@ const Contact = () => (
       <div className="row row-reverse">
         {contact.map((item) => {
           return (
-            <React.Fragment key={item.id}>
-              <div className="col-md-5">
-                <Reveal
-                  keyframes={fadeInLeft}
-                  duration={500}
-                  triggerOnce={true}
-                >
-                  <div className="contact_info">
-                    <h4>{item.title}</h4>
-                    <ul className="nav">
-                      {item.menuItems.map((info) => {
-                        return (
-                          <li className="item" key={info.id}>
-                            <div className="media">
-                              <i className={info.icon}></i>
-                              <div className="media-body">
-                                <a href={`mailto:${info.text}`}>{info.text}</a>
-                              </div>
+            <div className="col-md-5" key={item.title}>
+              <Reveal keyframes={fadeInLeft} duration={500} triggerOnce={true}>
+                <div className="contact_info">
+                  <h4>{item.title}</h4>
+                  <ul className="nav">
+                    {item.menuItems.map((info) => {
+                      return (
+                        <li className="item" key={info.id}>
+                          <div className="media">
+                            <i className={info.icon}></i>
+                            <div className="media-body">
+                              <a href={info.target}>{info.text}</a>
                             </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                </Reveal>
-              </div>
-            </React.Fragment>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </Reveal>
+            </div>
           );
         })}
         <div className="col-md-7">

@@ -121,9 +121,16 @@ export const contact = [
     title: 'Contact Info',
     menuItems: [
       {
-        id: 3,
+        id: 1,
         icon: 'icon_mail',
         text: 'Email: contact@crisboarna.com',
+        target: 'mailto:contact@crisboarna.com',
+      },
+      {
+        id: 2,
+        icon: 'icon_linkedin',
+        text: 'Linkedin: https://www.linkedin.com/in/crisboarna',
+        target: 'https://www.linkedin.com/in/crisboarna',
       },
     ],
   },

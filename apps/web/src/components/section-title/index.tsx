@@ -9,13 +9,13 @@ export interface SectionTitleProps {
 
 const SectionTitle: React.VFC<SectionTitleProps> = ({ title, description }) => (
   <div className="section_title text-center mb_60">
-    <Reveal keyframes={fadeInUp}>
+    <Reveal keyframes={fadeInUp} triggerOnce={true}>
       <h2 className="mb_0 title_h2 t_color">{title}</h2>
     </Reveal>
-    <Reveal keyframes={fadeInUp} duration={1500}>
+    <Reveal keyframes={fadeInUp} duration={1500} triggerOnce={true}>
       <p className="mb_0 title_p">{description}</p>
     </Reveal>
-    <Reveal keyframes={fadeInLeft} duration={2000}>
+    <Reveal keyframes={fadeInLeft} duration={2000} triggerOnce={true}>
       <span className="bottom_line"></span>
     </Reveal>
   </div>
