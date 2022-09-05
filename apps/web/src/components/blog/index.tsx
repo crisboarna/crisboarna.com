@@ -15,7 +15,7 @@ const Blog = () => (
       <Reveal keyframes={fadeInUp} duration={1000} triggerOnce={true}>
         <div className="row">
           {blogEntries.map((entry) => (
-            <BlogEntry entry={entry} />
+            <BlogEntry entry={entry} key={entry.title} />
           ))}
         </div>
       </Reveal>

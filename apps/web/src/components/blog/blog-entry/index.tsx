@@ -12,7 +12,7 @@ export interface BlogEntryProps {
 }
 
 const BlogEntry: VFC<BlogEntryProps> = ({ entry }) => (
-  <div className="col-lg-4 col-sm-6">
+  <div className="col-lg-4 col-sm-6" key={entry.title}>
     <div className="blog_post">
       <div className="blog_img">
         <img className="img-fluid" src={entry.image} alt="" />

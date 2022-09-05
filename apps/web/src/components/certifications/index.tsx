@@ -22,7 +22,7 @@ const Certifications = () => (
           triggerOnce={true}
         >
           {certifications.map((award) => (
-            <Certification award={award} />
+            <Certification award={award} key={award.title} />
           ))}
         </Reveal>
       </div>

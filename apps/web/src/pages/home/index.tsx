@@ -6,6 +6,8 @@ import Footer from '../../components/footer';
 import Certifications from '../../components/certifications';
 import Blog from '../../components/blog';
 import Contact from '../../components/contact';
+import Counters from '../../components/counters';
+import Tools from '../../components/tools';
 
 const Home = () => {
   return (
@@ -13,6 +15,7 @@ const Home = () => {
       <Header />
       <Banner />
       <Services />
+      <Tools />
       <div id={'portfolio'}>
         Portfolio
         <br />
@@ -28,6 +31,7 @@ const Home = () => {
         <br />
         <br />
       </div>
+      <Counters />
       <Certifications />
       <Blog />
       <Contact />
