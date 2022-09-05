@@ -4726,13 +4726,23 @@ h6 {
 }
 
 .awards_area [class*=" col-"]:nth-child(2) .icon::before {
-    background: rgba(6, 36, 249, 0.6);
+    background: rgba(68, 140, 147, 0.6);
     border-radius: 39% 81% 50% 59%/46% 57% 43% 54%;
 }
 
 .awards_area [class*=" col-"]:nth-child(3) .icon::before {
     background: #dde9fa;
     border-radius: 19% 99% 32% 88%/52% 65% 100% 81%;
+}
+
+.awards_area [class*=" col-"]:nth-child(4) .icon::before {
+    background: #5D93B3;
+    border-radius: 79% 99% 32% 88%/52% 65% 100% 81%;
+}
+
+.awards_area [class*=" col-"]:nth-child(5) .icon::before {
+    background: #54D0D3;
+    border-radius: 39% 81% 50% 59%/86% 57% 43% 54%;
 }
 
 .awards_item {

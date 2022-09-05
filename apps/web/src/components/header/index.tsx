@@ -93,13 +93,13 @@ const Header = () => {
                 <Link
                   className="nav-link"
                   activeClass="active"
-                  to="testimonial"
+                  to="certifications"
                   spy={true}
                   smooth={true}
                   offset={-86}
                   duration={500}
                 >
-                  Testimonial
+                  Certifications
                 </Link>
               </li>
               <li className="nav-item">
@@ -119,7 +119,7 @@ const Header = () => {
                 <Link
                   className="nav-link"
                   activeClass="active"
-                  to="contacts"
+                  to="contact"
                   spy={true}
                   smooth={true}
                   offset={-86}

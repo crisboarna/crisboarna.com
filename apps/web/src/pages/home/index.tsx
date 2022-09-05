@@ -4,6 +4,7 @@ import Banner from '../../components/banner';
 import Services from '../../components/services';
 import Footer from '../../components/footer';
 import Contact from '../../components/contact';
+import Certifications from '../../components/certifications';
 
 const Home = () => {
   return (
@@ -71,6 +72,7 @@ const Home = () => {
         <br />
         <br />
       </div>
+      <Certifications />
       <Contact />
       <Footer />
     </div>
