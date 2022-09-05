@@ -13,7 +13,12 @@ const Services = () => (
           'I love and am passionate of my craft. I take great pride in what I do.'
         }
       />
-      <Reveal keyframes={fadeInDown} cascade={true} duration={1000}>
+      <Reveal
+        keyframes={fadeInDown}
+        cascade={true}
+        duration={1000}
+        triggerOnce={true}
+      >
         <div className="row">
           {services.map((item) => {
             return (

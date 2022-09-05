@@ -13,7 +13,7 @@ export interface CertificationProps {
 }
 
 const Certification: VFC<CertificationProps> = ({ award }) => (
-  <div className={'col-lg-4 col-sm-6 pb-5'} key={award.title}>
+  <div className={''} key={award.title}>
     <div className="awards_item wow fadeInUp">
       <div className="icon">
         <img src={award.image} alt="AWS Logo" />

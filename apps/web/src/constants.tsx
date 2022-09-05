@@ -1,6 +1,7 @@
 import AWS from './assets/images/awards/aws.png';
 import K8 from './assets/images/awards/k8.png';
 import R3 from './assets/images/awards/r3.png';
+import Post from './assets/images/blog/post.jpg';
 
 export const services = [
   {
@@ -87,6 +88,30 @@ export const certifications = [
     url: 'https://r3certification.com/',
     urlText: 'View more',
     image: R3,
+  },
+];
+
+export const blogEntries = [
+  {
+    title: 'Contrary to popular belief',
+    description:
+      'Suspendisse in mattis neque, sed accu- msan erat. Maecenas eget metus dui. Vestibulum accumsan massa quam..',
+    date: 'Feb 14',
+    image: Post,
+  },
+  {
+    title: 'Behind the color',
+    description:
+      'Suspendisse in mattis neque, sed accu- msan erat. Maecenas eget metus dui. Vestibulum accumsan massa quam..',
+    date: 'Mar 14',
+    image: Post,
+  },
+  {
+    title: 'Post with sidebar',
+    description:
+      'Suspendisse in mattis neque, sed accu- msan erat. Maecenas eget metus dui. Vestibulum accumsan massa quam..',
+    date: 'May 14',
+    image: Post,
   },
 ];
 
