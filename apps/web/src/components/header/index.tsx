@@ -60,7 +60,7 @@ const Header = () => {
                   offset={-86}
                   duration={500}
                 >
-                  Service
+                  Services
                 </Link>
               </li>
               <li className="nav-item">

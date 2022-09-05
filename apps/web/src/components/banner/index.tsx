@@ -1,5 +1,4 @@
 import React from 'react';
-import { keyframes } from '@emotion/react';
 import { Reveal } from 'react-awesome-reveal';
 import BannerSvg from '../../assets/images/svg/banner.svg';
 import Arrow from '../../assets/images/banner/arrow.png';
@@ -11,58 +10,12 @@ import Ts from '../../assets/images/banner/ts.png';
 import Search from '../../assets/images/banner/search.png';
 import Shadow from '../../assets/images/banner/shadow.png';
 import Table from '../../assets/images/banner/table.png';
-
-const fadeInLeft = keyframes`
-  0% {
-        opacity: 0;
-        -webkit-transform: translateX(-20px);
-        transform: translateX(-20px)
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: translateX(0);
-        transform: translateX(0)
-    }
-`;
-
-const fadeInRight = keyframes`
-    0% {
-        opacity: 0;
-        -webkit-transform: translateX(20px);
-        transform: translateX(20px)
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: translateX(0);
-        transform: translateX(0)
-    }
-`;
-
-const fadeInDown = keyframes`
-    0% {
-        opacity: 0;
-        -webkit-transform: translateY(-20px);
-        transform: translateY(-20px)
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: translateY(0);
-        transform: translateY(0)
-    }
-`;
-
-const fadeInUp = keyframes`
-    0% {
-        opacity: 0;
-        -webkit-transform: translateY(20px);
-        transform: translateY(20px)
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: translateY(0);
-        transform: translateY(0)
-    }
-`;
+import {
+  fadeInDown,
+  fadeInLeft,
+  fadeInRight,
+  fadeInUp,
+} from '../../utils/animations';
 
 const Banner = () => (
   <section className="frelencer_banner_area" id="banner">
@@ -87,7 +40,7 @@ const Banner = () => (
     <div className="container">
       <div className="row">
         <div className="col-lg-6">
-          <div className="frelencer_content">
+          <div className="frelencer_content flex">
             <Reveal keyframes={fadeInUp} triggerOnce={true} duration={500}>
               <h2 className="t_color">
                 Hey there!
