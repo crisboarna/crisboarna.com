@@ -189,6 +189,120 @@ h6 {
     transform: scaleX(1);
 }
 
+/*============ header_theme_btn css =========*/
+.navbar_fixed .navbar .header_theme_btn {
+    font-size: 20px;
+    font-weight: 500;
+    color: #040c2c;
+    font-family: "Montserrat", sans-serif;
+    border: 2px solid #040c2c;
+    padding: 1px 4px;
+    border-radius: 3px;
+    position: relative;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 1;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    min-width: 100px;
+    text-align: center;
+    display: inline-block;
+}
+
+.navbar_fixed .navbar .header_theme_btn:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    transform: scaleX(0);
+    border-radius: 1px;
+    background: #040c2c;
+    -webkit-transform-origin: 50%;
+    -ms-transform-origin: 50%;
+    transform-origin: 50%;
+    transition-property: -webkit-transform;
+    -webkit-transition-property: -webkit-transform;
+    -o-transition-property: transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    transition: all 0.3s linear;
+}
+
+.navbar_fixed .navbar .header_theme_btn:hover {
+    color: #fff;
+}
+
+.navbar_fixed .navbar .header_theme_btn:hover:before {
+    -webkit-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+.navbar .header_theme_btn {
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    border: 2px solid #fff;
+    padding: 1px 4px;
+    border-radius: 3px;
+    position: relative;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 1;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    min-width: 100px;
+    text-align: center;
+    display: inline-block;
+}
+
+.navbar .header_theme_btn:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    transform: scaleX(0);
+    border-radius: 1px;
+    background: #fff;
+    -webkit-transform-origin: 50%;
+    -ms-transform-origin: 50%;
+    transform-origin: 50%;
+    transition-property: -webkit-transform;
+    -webkit-transition-property: -webkit-transform;
+    -o-transition-property: transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    transition: all 0.3s linear;
+}
+
+.navbar .header_theme_btn:hover {
+    color: #040c2c;
+}
+
+.navbar .header_theme_btn:hover:before {
+    -webkit-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+@media (max-width:992px) {
+    .navbar .header_theme_btn {
+        color: #000;
+        border: 2px solid #000;
+    }
+}
+
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /*========= header_area css ===========*/
@@ -487,6 +601,40 @@ h6 {
     width: 100%;
     top: 0;
     left: 0;
+}
+
+.frelencer_content h4 {
+    font-size: 22px;
+    letter-spacing: 0px;
+    padding: 10px 0px 30px;
+}
+.frelencer_content h4 span {
+    font-weight: 700;
+}
+
+.frelencer_content .social_icon li {
+    display: inline-block;
+    margin: 0px 3px;
+}
+
+.frelencer_content .social_icon li a {
+    font-size: 14px;
+    width: 42px;
+    height: 42px;
+    line-height: 43px;
+    border-radius: 50%;
+    background: rgba(13, 179, 199, 0.25);
+    display: inline-block;
+    color: #fff;
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    text-align: center;
+}
+
+.frelencer_content .social_icon li a:hover {
+    background: #fff;
+    color: #040c2c;
 }
 
 .banner_content {
@@ -1447,12 +1595,13 @@ h6 {
     display: block;
 }
 
-.contact-area .contact_info ul .item .media i {
+.contact-area .contact_info ul .item .media .icon {
     color: #494949;
     line-height: 28px;
     text-align: center;
     font-size: 18px;
     padding-right: 10px;
+    padding-top: 4px;
 }
 
 .contact-area .contact_info ul .item .media .media-body {
@@ -1665,7 +1814,7 @@ h6 {
     padding: 15px 30px;
     display: inline-block;
     font-weight: 600;
-    letter-spacing: 4px;
+    letter-spacing: 3.5px;
     color: #0db3c7;
 }
 .frelencer_content .theme_btn {

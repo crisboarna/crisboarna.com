@@ -7,17 +7,14 @@ import Logo2 from '../../assets/images/logo260.png';
 const Header = () => {
   return (
     <Sticky top={0} innerZ={9999} activeClass="navbar_fixed">
-      <nav className={`navbar navbar-expand-lg navbar-light menu_two`}>
+      <nav className={`navbar navbar-expand-lg navbar-light`}>
         <div className={`container`}>
           <a className="navbar-brand logo_h" href="./">
             <img src={Logo} alt="" />
             <img src={Logo2} alt="" />
           </a>
-          <a
-            href="./"
-            className="btn get-btn get-btn-two d-lg-none d-md-block login"
-          >
-            Login
+          <a href="./" className="btn d-lg-none d-md-block header_theme_btn">
+            CV
           </a>
           <button
             className="navbar-toggler"
@@ -114,6 +111,16 @@ const Header = () => {
                 >
                   Contact
                 </Link>
+              </li>
+            </ul>
+            <ul className="nav navbar-nav navbar-right d-lg-block">
+              <li className="nav-item">
+                <a
+                  href="https://cv.crisboarna.com"
+                  className="header_theme_btn"
+                >
+                  CV
+                </a>
               </li>
             </ul>
           </div>

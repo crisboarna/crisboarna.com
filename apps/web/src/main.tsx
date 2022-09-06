@@ -1,5 +1,8 @@
 import { StrictMode } from 'react';
 import * as ReactDOMClient from 'react-dom/client';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'jquery/dist/jquery.min.js';
+
 import App from './app';
 
 const root = ReactDOMClient.createRoot(

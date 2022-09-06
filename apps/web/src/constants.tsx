@@ -2,6 +2,46 @@ import AWS from './assets/images/awards/aws.png';
 import K8 from './assets/images/awards/k8.png';
 import R3 from './assets/images/awards/r3.png';
 import Post from './assets/images/blog/post.jpg';
+import React, { ReactElement } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+
+export interface ConstContactProps {
+  readonly id: number;
+  readonly text: string;
+  readonly target: string;
+  readonly icon: string;
+}
+
+export const ICONS: { [key: string]: ReactElement } = {
+  github: (
+    <FontAwesomeIcon
+      icon={icon({
+        style: 'brands',
+        name: 'github',
+      })}
+      className={'icon'}
+    />
+  ),
+  linkedin: (
+    <FontAwesomeIcon
+      icon={icon({
+        style: 'brands',
+        name: 'linkedin',
+      })}
+      className={'icon'}
+    />
+  ),
+  twitter: (
+    <FontAwesomeIcon
+      icon={icon({
+        style: 'brands',
+        name: 'twitter',
+      })}
+      className={'icon'}
+    />
+  ),
+};
 
 export const services = [
   {
@@ -115,52 +155,47 @@ export const blogEntries = [
   },
 ];
 
-export const contact = [
+export const contact: ConstContactProps[] = [
   {
-    id: '1',
-    title: 'Contact Info',
-    menuItems: [
-      {
-        id: 1,
-        icon: 'icon_mail',
-        text: 'Email: contact@crisboarna.com',
-        target: 'mailto:contact@crisboarna.com',
-      },
-      {
-        id: 2,
-        icon: 'social_linkedin_circle',
-        text: 'LinkedIn: crisboarna',
-        target: 'https://www.linkedin.com/in/crisboarna',
-      },
-      {
-        id: 2,
-        icon: 'social_linkedin_circle',
-        text: 'LinkedIn: crisboarna',
-        target: 'https://www.linkedin.com/in/crisboarna',
-      },
-    ],
+    id: 1,
+    icon: 'envelope',
+    text: 'Email: contact@crisboarna.com',
+    target: 'mailto:contact@crisboarna.com',
+  },
+  {
+    id: 2,
+    icon: 'github',
+    text: 'Github: @crisboarna',
+    target: 'https://github.com/crisboarna',
+  },
+  {
+    id: 3,
+    icon: 'linkedin',
+    text: 'LinkedIn: @crisboarna',
+    target: 'https://www.linkedin.com/in/crisboarna',
+  },
+  {
+    id: 4,
+    icon: 'twitter',
+    text: 'Twitter: @crisboarna',
+    target: 'https://twitter.com/crisboarna',
   },
 ];
 
 export const socials = [
   {
-    name: 'Facebook',
-    url: 'http://www.linkedin.com/',
-    className: 'social_facebook',
+    name: 'Github',
+    url: 'https://github.com/crisboarna',
+    icon: 'github',
   },
   {
-    name: 'twitter',
-    url: 'http://www.twitter.com/',
-    className: 'social_twitter',
+    name: 'Linkedin',
+    url: 'https://www.linkedin.com/in/crisboarna',
+    icon: 'linkedin',
   },
   {
-    name: 'googleplus',
-    url: 'http://www.googleplus.com',
-    className: 'social_googleplus',
-  },
-  {
-    name: 'pinterest',
-    url: 'http://www.pinterest.com',
-    className: 'social_pinterest',
+    name: 'Twitter',
+    url: 'https://twitter.com/crisboarna',
+    icon: 'twitter',
   },
 ];

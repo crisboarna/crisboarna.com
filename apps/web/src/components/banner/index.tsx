@@ -16,6 +16,7 @@ import {
   fadeInRight,
   fadeInUp,
 } from '../../utils/animations';
+import { ICONS, socials } from '../../constants';
 
 const Banner = () => (
   <section className="frelencer_banner_area" id="banner">
@@ -52,11 +53,26 @@ const Banner = () => (
                 <span>Web, Mobile, Native & Cloud Services</span>
               </h4>
             </Reveal>
-            <Reveal keyframes={fadeInUp} triggerOnce={true} duration={900}>
-              <a href="./" className="theme_btn active">
-                Hire me
-              </a>
+            <Reveal
+              keyframes={fadeInUp}
+              triggerOnce={true}
+              duration={1000}
+              delay={300}
+              cascade={true}
+            >
+              <ul className="list_style social_icon">
+                {socials.map((item) => (
+                  <li key={item.name}>
+                    <a href={item.url}>{ICONS[item.icon]}</a>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
+            {/*<Reveal keyframes={fadeInUp} triggerOnce={true} duration={900}>*/}
+            {/*  <a href="./" className="theme_btn active">*/}
+            {/*    Hire me*/}
+            {/*  </a>*/}
+            {/*</Reveal>*/}
           </div>
         </div>
         <div className="col-lg-6">
