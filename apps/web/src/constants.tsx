@@ -46,45 +46,45 @@ export const ICONS: { [key: string]: ReactElement } = {
 export const services = [
   {
     id: 1,
-    iconName: 'icon-desktop',
-    serviceTitle: 'Web Design',
+    iconName: 'icon-cloud',
+    serviceTitle: 'Cloud',
     sDetails:
-      'There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text.',
+      'I architect, develop & deploy apps that are scalable & resilient for global audiences on AWS, Azure & Firebase',
   },
   {
     id: 2,
-    iconName: 'icon-pencil',
-    serviceTitle: 'Development',
+    iconName: 'icon-browser',
+    serviceTitle: 'Web',
     sDetails:
-      'There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text.',
+      'Design & development of beautiful & rich web applications for all screen sizes that are modular, light & accessible.',
   },
   {
     id: 3,
-    iconName: 'icon-presentation',
-    serviceTitle: 'Marketing',
+    iconName: 'icon-mobile',
+    serviceTitle: 'Mobile',
     sDetails:
-      'There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text.',
+      'I create beautiful cross-platform native mobile apps enriching your users experience with your products.',
   },
   {
     id: 4,
-    iconName: 'icon-linegraph',
-    serviceTitle: 'Strategy',
+    iconName: 'icon-desktop',
+    serviceTitle: 'Native',
     sDetails:
-      'There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text.',
+      'Experience delivering Windows, Linux & macOS native apps via Electron, Flutter or C++.',
   },
   {
     id: 5,
-    iconName: 'icon-gears',
-    serviceTitle: 'Support',
+    iconName: 'icon-streetsign',
+    serviceTitle: 'Self-starter',
     sDetails:
-      'There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text.',
+      'I am a quick learner and can take a project from A to Z while keeping stakeholders informed.',
   },
   {
     id: 6,
-    iconName: 'icon-tools',
-    serviceTitle: 'We’re experienced',
+    iconName: 'icon-lightbulb',
+    serviceTitle: 'Innovative',
     sDetails:
-      'There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text.',
+      'Given wide breadth of experience and skill I can provide original solutions and ideas to a problem.',
   },
 ];
 
