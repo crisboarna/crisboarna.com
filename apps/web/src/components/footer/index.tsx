@@ -8,7 +8,7 @@ const Footer = () => (
     <div className="container">
       <div className="row footer-content">
         <div className="col-sm-4">
-          <Reveal keyframes={fadeInUp} cascade={true}>
+          <Reveal keyframes={fadeInUp} cascade={true} triggerOnce={true}>
             <ul className="list_style">
               {socials.map((item) => (
                 <li key={item.name}>

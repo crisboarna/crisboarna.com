@@ -1499,7 +1499,10 @@ h6 {
     padding-left: 20px;
     text-transform: capitalize;
     min-height: 44px;
-    margin-bottom: 30px;
+}
+
+.contact-area .input_form form .form-group {
+    margin-top: 15px;
 }
 
 .contact-area .input_form form .form-control.placeholder {
