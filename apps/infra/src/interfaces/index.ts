@@ -1,5 +1,5 @@
-import { IBaseStackProps } from '../utils/interfaces';
 import { OpenIdConnectProviderProps } from 'aws-cdk-lib/aws-iam/lib/oidc-provider';
+import { IBaseStackProps } from 'aws-cdk-lib-util';
 
 //===ACM===
 export type IACMConfig = IDomainConfig & {
@@ -12,7 +12,7 @@ export type IDomainConfig = {
   readonly domainName: string;
 };
 
-export type IAPIProps = IDomainConfig;
+export type IAPIProps = IDomainConfig & { readonly sesEmailFrom: string };
 
 //===CI===
 export type CIProps = OpenIdConnectProviderProps & {

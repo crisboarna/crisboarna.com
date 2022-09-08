@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="[Raw] CDK" type="NodeJSConfigurationType" node-parameters="-r ts-node/register -r dotenv/config" path-to-js-file="apps/infra/src/bin/CI.ts" working-dir="$PROJECT_DIR$">
+    <envs>
+      <env name="AWS_PROFILE" value="cris_prod" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>

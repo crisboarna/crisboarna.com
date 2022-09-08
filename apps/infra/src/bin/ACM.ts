@@ -4,14 +4,14 @@ import {
   CONTEXT_GLOBAL_CONSTRUCTS,
   PARAM_ACM_DOMAIN_ARN,
   PARAM_ACM_DOMAIN_ARN_CF,
-  PROJECT_NAME,
 } from '../config';
 import { ACMStack } from '../lib/acm/ACMStack';
 import { CDKContextUtil, CDKDirectoryUtil } from 'aws-cdk-lib-util';
+import { APIConstants } from '@crisboarna.com/common-api';
 
 const app = new App();
 
-const ENV = process.env.ENV;
+const ENV = process.env[APIConstants.ENV];
 
 const isGlobalConstructsStack = CDKContextUtil.hasContextKey(
   app,
@@ -20,7 +20,7 @@ const isGlobalConstructsStack = CDKContextUtil.hasContextKey(
 
 new ACMStack(
   app,
-  `${PROJECT_NAME}-${CDKDirectoryUtil.getStackName(
+  `${APIConstants.PROJECT_NAME}-${CDKDirectoryUtil.getStackName(
     __dirname,
     __filename
   )}-${ENV}`,
@@ -36,7 +36,7 @@ new ACMStack(
       : PARAM_ACM_DOMAIN_ARN,
     domainName: process.env.AWS_CDK_DOMAIN_NAME,
     domainZoneId: process.env.AWS_CDK_DOMAIN_ZONE_ID,
-    projectName: PROJECT_NAME,
+    projectName: APIConstants.PROJECT_NAME,
     stackEnv: ENV,
   }
 );

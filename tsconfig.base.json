@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@crisboarna.com/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@crisboarna.com/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@crisboarna.com/common-api": ["libs/common-api/src/index.ts"],
+      "@crisboarna.com/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp", "cdk.out"]

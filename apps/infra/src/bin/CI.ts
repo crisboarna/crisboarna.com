@@ -5,18 +5,18 @@ import {
   CI_OIDP_OWNER,
   CI_OIDP_THUMBPRINT,
   CI_OIDP_URL,
-  PROJECT_NAME,
 } from '../config';
 import { CIStack } from '../lib/ci/CIStack';
 import { CDKDirectoryUtil } from 'aws-cdk-lib-util';
+import { APIConstants } from '@crisboarna.com/common-api';
 
 const app = new App();
 
-const ENV = process.env.ENV;
+const ENV = process.env[APIConstants.ENV];
 
 new CIStack(
   app,
-  `${PROJECT_NAME}-${CDKDirectoryUtil.getStackName(
+  `${APIConstants.PROJECT_NAME}-${CDKDirectoryUtil.getStackName(
     __dirname,
     __filename
   )}-${ENV}`,
@@ -30,7 +30,7 @@ new CIStack(
     clientIds: CI_OIDP_CLIENT_ID,
     thumbprints: CI_OIDP_THUMBPRINT,
     owner: CI_OIDP_OWNER,
-    projectName: PROJECT_NAME,
+    projectName: APIConstants.PROJECT_NAME,
     stackEnv: ENV,
   }
 );

@@ -1,21 +1,29 @@
 #!/usr/bin/env node
 import { App } from 'aws-cdk-lib';
-import { PROJECT_NAME } from '../config';
-import { lambdaApiMock } from '../config/lambda';
+import { lambdaApiMain } from '../config/lambda';
 import { CDKDirectoryUtil, LambdaUtilStack } from 'aws-cdk-lib-util';
+import { APIConstants } from '@crisboarna.com/common-api';
 
 const app = new App();
 
 const ENV = process.env.ENV;
 
-CDKDirectoryUtil.checkArtifactDirectoryExists(lambdaApiMock.artifactPath);
+CDKDirectoryUtil.checkArtifactDirectoryExists(lambdaApiMain.artifactPath);
 
-new LambdaUtilStack(app, `${lambdaApiMock.name}-${ENV}`, {
+new LambdaUtilStack(app, `${lambdaApiMain.name}-${ENV}`, {
   env: {
     account: process.env.AWS_CDK_ACCOUNT,
     region: process.env.AWS_CDK_REGION,
   },
-  lambda: lambdaApiMock,
-  projectName: PROJECT_NAME,
+  lambda: {
+    ...lambdaApiMain,
+    // @ts-ignore
+    environmentGeneration: lambdaApiMain.environmentGeneration(
+      // @ts-ignore
+      process.env.AWS_CDK_DOMAIN_NAME,
+      process.env[APIConstants.SES_EMAIL_NAME]
+    ),
+  },
+  projectName: APIConstants.PROJECT_NAME,
   stackEnv: ENV,
 });

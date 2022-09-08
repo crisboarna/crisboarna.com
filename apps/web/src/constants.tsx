@@ -13,6 +13,8 @@ export interface ConstContactProps {
   readonly icon: string;
 }
 
+export const API_URL = process.env.NX_WEB_API_URL;
+
 export const ICONS: { [key: string]: ReactElement } = {
   github: (
     <FontAwesomeIcon

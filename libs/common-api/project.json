@@ -1,0 +1,34 @@
+{
+  "root": "libs/common-api",
+  "sourceRoot": "libs/common-api/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/common-api",
+        "tsConfig": "libs/common-api/tsconfig.lib.json",
+        "packageJson": "libs/common-api/package.json",
+        "main": "libs/common-api/src/index.ts",
+        "assets": ["libs/common-api/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/common-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/common-api"],
+      "options": {
+        "jestConfig": "libs/common-api/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["scope:backend"]
+}

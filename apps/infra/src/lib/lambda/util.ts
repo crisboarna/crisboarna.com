@@ -9,7 +9,7 @@ export type IAMPolicyGetter = (
 
 export const getApiIAMPolicies = (name: string): IAMPolicyGetter => {
   switch (name) {
-    case 'mock':
+    case 'api':
       return () => [];
     default:
       return () => [];

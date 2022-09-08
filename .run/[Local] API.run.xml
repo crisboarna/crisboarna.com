@@ -1,0 +1,40 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="[Local] API" type="aws.lambda" factoryName="Local">
+    <option name="credentialProviderId" value="profile:cris_prod" />
+    <option name="regionId" value="eu-west-1" />
+    <option name="debugHost" value="localhost" />
+    <option name="architecture" />
+    <option name="environmentVariables">
+      <map>
+        <entry key="APP_NAME" value="Api-Main" />
+        <entry key="CLOUD_DEPLOYED" value="true" />
+        <entry key="CREATION_DATE" value="2022-09-07T13:24:03.566Z" />
+        <entry key="ENV" value="PROD" />
+        <entry key="PROJECT_NAME" value="CRISBOARNA" />
+        <entry key="REGION" value="eu-west-1" />
+      </map>
+    </option>
+    <option name="handler" />
+    <option name="image" value="false" />
+    <option name="logicalFunctionName" value="CRISBOARNAApiMainF229789F" />
+    <option name="memorySize" value="128" />
+    <option name="pathMappings">
+      <list />
+    </option>
+    <option name="platform" />
+    <option name="runtime" />
+    <option name="templateFile" value="$PROJECT_DIR$/cdk.out/api.yaml" />
+    <option name="timeout" value="300" />
+    <option name="useTemplate" value="true" />
+    <option name="input" value="$PROJECT_DIR$/apps/api/sam-event.json" />
+    <option name="inputIsFile" value="true" />
+    <sam>
+      <option name="additionalBuildArgs" value="" />
+      <option name="additionalLocalArgs" value="" />
+      <option name="buildInContainer" value="false" />
+      <option name="dockerNetwork" value="" />
+      <option name="skipImagePull" value="false" />
+    </sam>
+    <method v="2" />
+  </configuration>
+</component>

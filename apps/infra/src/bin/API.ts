@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 import { App } from 'aws-cdk-lib';
 import { APIStack } from '../lib/api/APIStack';
-import { PROJECT_NAME } from '../config';
 import { CDKDirectoryUtil } from 'aws-cdk-lib-util';
+import { APIConstants } from '@crisboarna.com/common-api';
 
 const app = new App();
 
-const ENV = process.env.ENV;
+const ENV = process.env[APIConstants.ENV];
 
 new APIStack(
   app,
-  `${PROJECT_NAME}-${CDKDirectoryUtil.getStackName(
+  `${APIConstants.PROJECT_NAME}-${CDKDirectoryUtil.getStackName(
     __dirname,
     __filename
   )}-${ENV}`,
@@ -21,7 +21,8 @@ new APIStack(
       region: process.env.AWS_CDK_REGION,
     },
     domainName: process.env.AWS_CDK_DOMAIN_NAME,
-    projectName: PROJECT_NAME,
+    sesEmailFrom: process.env[APIConstants.SES_EMAIL_NAME],
+    projectName: APIConstants.PROJECT_NAME,
     stackEnv: ENV,
   }
 );

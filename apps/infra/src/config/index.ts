@@ -1,4 +1,3 @@
-export const PROJECT_NAME = 'CRISBOARNA';
 export const CONTEXT_GLOBAL_CONSTRUCTS = 'GLOBAL_CONSTRUCTS';
 
 export const CI_OIDP_URL = 'token.actions.githubusercontent.com';
@@ -18,8 +17,8 @@ export const PARAM_API_GW_ID = `apigw/id/`;
 export const PARAM_CDN_ID_API = `cdn/id/api`;
 
 //===LAMBDA===
-export const PARAM_LAMBDA_API_MOCK_ALIAS_ARN = `lambda/alias/arn/api/mock/`;
-export const PARAM_LAMBDA_API_MOCK_ROLE_ARN = `lambda/role/arn/api/mock/`;
+export const PARAM_LAMBDA_API_MAIN_ALIAS_ARN = `lambda/alias/arn/api/main`;
+export const PARAM_LAMBDA_API_MAIN_ROLE_ARN = `lambda/role/arn/api/main`;
 
 //===SNS===
 export const PARAM_SNS_ALARMS_ARN = `sns/alarms/arn/`;

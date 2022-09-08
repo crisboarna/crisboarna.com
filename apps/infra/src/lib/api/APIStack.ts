@@ -13,11 +13,12 @@ import {
   ENV,
   PARAM_ACM_DOMAIN_ARN,
   PARAM_API_GW_ID,
-  PARAM_LAMBDA_API_MOCK_ALIAS_ARN,
+  PARAM_LAMBDA_API_MAIN_ALIAS_ARN,
 } from '../../config';
 import { ARecord, HostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
 import { ApiGatewayv2DomainProperties } from 'aws-cdk-lib/aws-route53-targets';
 import { SSMUtil } from 'aws-cdk-lib-util';
+import { EmailIdentity, Identity } from 'aws-cdk-lib/aws-ses';
 
 /**
  * Stack creating the API GW v2
@@ -26,11 +27,11 @@ export class APIStack extends Stack {
   constructor(scope: Construct, id: string, props?: APIStackProps) {
     super(scope, id, props);
 
-    const { domainName, projectName, stackEnv } = props;
+    const { domainName, projectName, stackEnv, sesEmailFrom } = props;
 
-    const [domainCertArn, lambdaApiMockArn] = [
+    const [domainCertArn, lambdaApiArn] = [
       PARAM_ACM_DOMAIN_ARN,
-      PARAM_LAMBDA_API_MOCK_ALIAS_ARN,
+      PARAM_LAMBDA_API_MAIN_ALIAS_ARN,
     ].map(
       (paramName) => <string>SSMUtil.getSSMParameter({
           scope: this,
@@ -98,21 +99,21 @@ export class APIStack extends Stack {
       },
     });
 
-    const lambdaApiMockCfnIntegration = new CfnIntegration(
+    const lambdaApiCfnIntegration = new CfnIntegration(
       this,
-      `${projectName}-API-Mock-Integration-${stackEnv}`,
+      `${projectName}-API-Integration-${stackEnv}`,
       {
         apiId: httpApi.ref,
         integrationType: 'AWS_PROXY',
         payloadFormatVersion: '1.0',
-        integrationUri: lambdaApiMockArn,
+        integrationUri: lambdaApiArn,
       }
     );
 
     new CfnRoute(this, `${projectName}-API-GW-Default-Route-${stackEnv}`, {
       apiId: httpApi.ref,
       routeKey: '$default',
-      target: `integrations/${lambdaApiMockCfnIntegration.ref}`,
+      target: `integrations/${lambdaApiCfnIntegration.ref}`,
     });
 
     new CfnRoute(this, `${projectName}-API-GW-CORS-Route-${stackEnv}`, {
@@ -137,6 +138,10 @@ export class APIStack extends Stack {
     );
 
     tldMapping.node.addDependency(domainNameApi);
+
+    new EmailIdentity(this, `${projectName}-SES-Identity-${stackEnv}`, {
+      identity: Identity.email(sesEmailFrom),
+    });
 
     SSMUtil.createSSMParameter({
       scope: this,

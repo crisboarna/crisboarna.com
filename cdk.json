@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts",
+  "app": "npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts",
   "watch": {
     "include": [
       "apps/infra/**"
