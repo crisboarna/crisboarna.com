@@ -28,8 +28,11 @@ export class APIStack extends Stack {
 
     const { domainName, projectName, stackEnv } = props;
 
-    const [domainCertArn, lambdaApiArn] = [
-      PARAM_ACM_DOMAIN_ARN,
+    const [
+      // domainCertArn,
+      lambdaApiArn,
+    ] = [
+      // PARAM_ACM_DOMAIN_ARN,
       PARAM_LAMBDA_API_MAIN_ALIAS_ARN,
     ].map(
       (paramName) => <string>SSMUtil.getSSMParameter({
@@ -39,39 +42,39 @@ export class APIStack extends Stack {
           paramName,
         })
     );
+    //
+    // const domainNameApi = new CfnDomainName(
+    //   this,
+    //   `${projectName}-APIGW-Domain-TLD-${stackEnv}`,
+    //   {
+    //     domainName: `api.${domainName}`,
+    //     domainNameConfigurations: [
+    //       {
+    //         certificateArn: domainCertArn,
+    //         endpointType: 'REGIONAL',
+    //       },
+    //     ],
+    //   }
+    // );
+    //
+    // const zone = HostedZone.fromLookup(
+    //   this,
+    //   `${projectName}-R53-Zone-${stackEnv}`,
+    //   {
+    //     domainName,
+    //   }
+    // );
 
-    const domainNameApi = new CfnDomainName(
-      this,
-      `${projectName}-APIGW-Domain-TLD-${stackEnv}`,
-      {
-        domainName: `api.${domainName}`,
-        domainNameConfigurations: [
-          {
-            certificateArn: domainCertArn,
-            endpointType: 'REGIONAL',
-          },
-        ],
-      }
-    );
-
-    const zone = HostedZone.fromLookup(
-      this,
-      `${projectName}-R53-Zone-${stackEnv}`,
-      {
-        domainName,
-      }
-    );
-
-    new ARecord(this, `${projectName}-R53-A-${stackEnv}`, {
-      zone,
-      recordName: 'api',
-      target: RecordTarget.fromAlias(
-        new ApiGatewayv2DomainProperties(
-          domainNameApi.attrRegionalDomainName,
-          domainNameApi.attrRegionalHostedZoneId
-        )
-      ),
-    });
+    // new ARecord(this, `${projectName}-R53-A-${stackEnv}`, {
+    //   zone,
+    //   recordName: 'api',
+    //   target: RecordTarget.fromAlias(
+    //     new ApiGatewayv2DomainProperties(
+    //       domainNameApi.attrRegionalDomainName,
+    //       domainNameApi.attrRegionalHostedZoneId
+    //     )
+    //   ),
+    // });
 
     const origins = [`https://${domainName}`, `https://cv.${domainName}`];
 
@@ -120,23 +123,23 @@ export class APIStack extends Stack {
       routeKey: 'OPTIONS /{proxy+}',
     });
 
-    const stage = new CfnStage(this, `${projectName}-Stage-${stackEnv}`, {
+    new CfnStage(this, `${projectName}-Stage-${stackEnv}`, {
       apiId: httpApi.ref,
       autoDeploy: true,
       stageName: stackEnv.toLowerCase(),
     });
 
-    const tldMapping = new CfnApiMapping(
-      this,
-      `${projectName}-API-DNS-Mapping-${stackEnv}`,
-      {
-        apiId: httpApi.ref,
-        domainName: domainNameApi.domainName,
-        stage: stage.ref,
-      }
-    );
-
-    tldMapping.node.addDependency(domainNameApi);
+    // const tldMapping = new CfnApiMapping(
+    //   this,
+    //   `${projectName}-API-DNS-Mapping-${stackEnv}`,
+    //   {
+    //     apiId: httpApi.ref,
+    //     domainName: domainNameApi.domainName,
+    //     stage: stage.ref,
+    //   }
+    // );
+    //
+    // tldMapping.node.addDependency(domainNameApi);
 
     SSMUtil.createSSMParameter({
       scope: this,
