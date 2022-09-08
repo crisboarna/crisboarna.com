@@ -3,6 +3,7 @@ import { CatchAllController } from '../controllers/CatchAllController';
 import { ContactController } from '../controllers/ContactController';
 import { ContactService } from '../services/ContactService';
 import { SESService } from '../services/SESService';
+import { APIConstants } from '@crisboarna.com/common-api';
 
 const rootDir = path.resolve(`${__dirname}/..`);
 
@@ -38,7 +39,11 @@ export const getServerConfig: (
   componentsScan: [ContactService, SESService],
   swagger: [
     {
-      path: `/swagger`,
+      path: `${
+        process.env[APIConstants.CLOUD_DEPLOYED] === 'true'
+          ? 'swagger'
+          : `/swagger`
+      }`,
       fileName: 'openapi3',
       spec: {
         info: {

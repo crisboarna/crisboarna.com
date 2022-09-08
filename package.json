@@ -14,8 +14,8 @@
     "test": "nx run-many --target=test --all",
     "lint": "nx run-many --target=lint --all",
     "release": "semantic-release",
-    "api:local:build": "concurrently --kill-others-on-fail -n build:nx,build:cdk \"nx build api\" \"cdk synth --no-staging > cdk.out/api.yaml\"",
-    "api:local:run": "sam local invoke CRISBOARNA-Api-Main-PROD -n apps/api/sam-env.json -e apps/api/sam-event.json -t ./cdk.out/CRISBOARNA-Api-Main-PROD.template.json"
+    "api-main:local:build": "concurrently --kill-others-on-fail -n build:nx,build:cdk \"nx build api-main\" \"cdk synth --no-staging > cdk.out/api-main.yaml\"",
+    "api-main:local:run": "sam local invoke CRISBOARNA-Api-Main-PROD -n apps/api/main/sam-env.json -e apps/api/main/sam-event.json -t ./cdk.out/CRISBOARNA-Api-Main-PROD.template.json"
   },
   "private": true,
   "dependencies": {

@@ -19,7 +19,10 @@ const rootArtifactApiPath = `${rootArtifactPath}/api`;
 
 //===Main===
 const lambdaNameApiMain = 'main';
-const artifactPathApi = path.join(__dirname, `${rootArtifactApiPath}`);
+const artifactPathApi = path.join(
+  __dirname,
+  `${rootArtifactApiPath}/${lambdaNameApiMain}`
+);
 const nameCapitalizedApiMain = `${CDKStringUtil.capitalizeInputString(
   subPathApi
 )}-${CDKStringUtil.capitalizeInputString(lambdaNameApiMain)}`;

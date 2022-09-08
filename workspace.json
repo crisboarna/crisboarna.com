@@ -1,7 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "api": "apps/api",
+    "api-main": "apps/api/main",
     "common-api": "libs/common-api",
     "infra": "apps/infra",
     "types": "libs/types",

@@ -1,17 +1,17 @@
 {
-  "root": "apps/api",
-  "sourceRoot": "apps/api/src",
+  "root": "apps/api/main",
+  "sourceRoot": "apps/api/main/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/api",
-        "main": "apps/api/src/main.ts",
+        "outputPath": "dist/apps/api/main",
+        "main": "apps/api/main/src/main.ts",
         "externalDependencies": ["aws-sdk"],
         "deleteOutputPath": true,
-        "tsConfig": "apps/api/tsconfig.app.json"
+        "tsConfig": "apps/api/main/tsconfig.app.json"
       },
       "configurations": {
         "production": {
@@ -24,21 +24,21 @@
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
-        "buildTarget": "api:build"
+        "buildTarget": "api-main:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/api/**/*.ts"]
+        "lintFilePatterns": ["apps/api/main/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/api"],
+      "outputs": ["coverage/apps/api/main"],
       "options": {
-        "jestConfig": "apps/api/jest.config.js",
+        "jestConfig": "apps/api/main/jest.config.js",
         "passWithNoTests": true,
         "codeCoverage": true
       }

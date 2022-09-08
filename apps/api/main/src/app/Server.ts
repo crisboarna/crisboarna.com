@@ -37,23 +37,14 @@ export class Server {
   }
 
   $beforeRoutesInit(): void {
+    const origin = [process.env[APIConstants.DOMAIN_NAME]];
+    if (process.env[APIConstants.ENV] === 'DEV') {
+      origin.push('http://localhost:4200');
+    }
+
     this.app
       .use(PlatformAcceptMimesMiddleware)
-      .use(
-        cors({
-          origin: (origin, cb) => {
-            if (process.env[APIConstants.ENV] === 'DEV') {
-              cb(null, true);
-            } else {
-              if (process.env[APIConstants.DOMAIN_NAME] === origin) {
-                cb(null, true);
-              } else {
-                cb(new Error('Not Allowed by CORS.'));
-              }
-            }
-          },
-        })
-      )
+      .use(cors({ origin }))
       .use(bodyParser.json())
       .use(
         bodyParser.urlencoded({

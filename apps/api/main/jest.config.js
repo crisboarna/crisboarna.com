@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'api',
-  preset: '../../jest.preset.js',
+  displayName: 'api-main',
+  preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -11,7 +11,7 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/api/mock',
+  coverageDirectory: '../../coverage/apps/api/main',
   coverageReporters: ['text', 'lcov', 'html'],
   coverageThreshold: {
     global: {
