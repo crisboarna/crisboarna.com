@@ -12,7 +12,7 @@ export type IDomainConfig = {
   readonly domainName: string;
 };
 
-export type IAPIProps = IDomainConfig & { readonly sesEmailFrom: string };
+export type IAPIProps = IDomainConfig;
 
 //===CI===
 export type CIProps = OpenIdConnectProviderProps & {

@@ -18,7 +18,6 @@ import {
 import { ARecord, HostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
 import { ApiGatewayv2DomainProperties } from 'aws-cdk-lib/aws-route53-targets';
 import { SSMUtil } from 'aws-cdk-lib-util';
-import { EmailIdentity, Identity } from 'aws-cdk-lib/aws-ses';
 
 /**
  * Stack creating the API GW v2
@@ -27,7 +26,7 @@ export class APIStack extends Stack {
   constructor(scope: Construct, id: string, props?: APIStackProps) {
     super(scope, id, props);
 
-    const { domainName, projectName, stackEnv, sesEmailFrom } = props;
+    const { domainName, projectName, stackEnv } = props;
 
     const [domainCertArn, lambdaApiArn] = [
       PARAM_ACM_DOMAIN_ARN,
@@ -138,10 +137,6 @@ export class APIStack extends Stack {
     );
 
     tldMapping.node.addDependency(domainNameApi);
-
-    new EmailIdentity(this, `${projectName}-SES-Identity-${stackEnv}`, {
-      identity: Identity.email(sesEmailFrom),
-    });
 
     SSMUtil.createSSMParameter({
       scope: this,

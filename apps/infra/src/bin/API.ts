@@ -21,7 +21,6 @@ new APIStack(
       region: process.env.AWS_CDK_REGION,
     },
     domainName: process.env.AWS_CDK_DOMAIN_NAME,
-    sesEmailFrom: process.env[APIConstants.SES_EMAIL_NAME],
     projectName: APIConstants.PROJECT_NAME,
     stackEnv: ENV,
   }

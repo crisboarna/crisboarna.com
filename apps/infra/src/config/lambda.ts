@@ -9,6 +9,7 @@ import { getApiIAMPolicies } from '../lib/lambda/util';
 import { ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { CDKStringUtil, LambdaProps } from 'aws-cdk-lib-util';
 import { APIConstants } from '@crisboarna.com/common-api';
+import { EmailIdentity, Identity } from 'aws-cdk-lib/aws-ses';
 
 const rootArtifactPath = './../../../../dist/apps';
 
@@ -31,8 +32,16 @@ export const lambdaApiMain: LambdaProps = {
     DOMAIN_NAME: domainName,
     SES_EMAIL: sesEmail,
   })) as never,
-  extraActions: ({ lambdaAlias }) =>
-    lambdaAlias.grantInvoke(new ServicePrincipal('apigateway.amazonaws.com')),
+  extraActions: ({ scope, lambdaAlias, stackEnv }) => {
+    lambdaAlias.grantInvoke(new ServicePrincipal('apigateway.amazonaws.com'));
+    new EmailIdentity(
+      scope,
+      `${APIConstants.PROJECT_NAME}-SES-Identity-${stackEnv}`,
+      {
+        identity: Identity.email(process.env[APIConstants.SES_EMAIL_NAME]),
+      }
+    );
+  },
   isInVpc: false,
   isProvisioned: false,
   managedPolicies: ['service-role/AWSLambdaBasicExecutionRole'],
