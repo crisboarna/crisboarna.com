@@ -1,6 +1,10 @@
-export const wafRules = (projectName: string, stackEnv: string) => [
+export const wafRules = (
+  projectName: string,
+  stackEnv: string,
+  service: string
+) => [
   {
-    name: 'IPRateLimiting',
+    name: `IPRateLimiting${stackEnv}`,
     priority: 0,
     action: { block: {} },
     statement: {
@@ -11,7 +15,7 @@ export const wafRules = (projectName: string, stackEnv: string) => [
     },
     visibilityConfig: {
       cloudWatchMetricsEnabled: true,
-      metricName: `${projectName.toLowerCase()}-waf-ip-rate-${stackEnv.toLowerCase()}`,
+      metricName: `${projectName.toLowerCase()}-waf-ip-rate-${service}-${stackEnv.toLowerCase()}`,
       sampledRequestsEnabled: true,
     },
   },

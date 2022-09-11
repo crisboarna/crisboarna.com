@@ -1,13 +1,13 @@
 {
-  "root": "apps/api/main",
-  "sourceRoot": "apps/api/main/src",
+  "root": "apps/api/auth/cdn",
+  "sourceRoot": "apps/api/auth/cdn/src",
   "projectType": "application",
   "targets": {
     "sam:build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "concurrently --kill-others-on-fail -n build:nx,build:cdk \"nx build api-main\" \"cdk synth --no-staging > cdk.out/api-main.yaml\""
+          "concurrently --kill-others-on-fail -n build:nx,build:cdk \"nx build api-auth-cdn\" \"cdk synth --no-staging > cdk.out/api-cdn.yaml\""
         ]
       }
     },
@@ -15,7 +15,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "sam local invoke CRISBOARNA-Api-Main-DEV -n apps/api/main/sam-env.json -e apps/api/main/sam-event.json -t ./cdk.out/CRISBOARNA-Api-Main-DEV.template.json"
+          "sam local invoke CRISBOARNA-Api-Auth-Cdn-DEV -n apps/api/auth/cdn/sam-env.json -e apps/api/auth/cdn/sam-event.json -t ./cdk.out/CRISBOARNA-Api-Auth-Cdn-DEV.template.json"
         ]
       }
     },
@@ -23,11 +23,12 @@
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/api/main",
-        "main": "apps/api/main/src/main.ts",
+        "outputPath": "dist/apps/api/auth/cdn",
+        "main": "apps/api/auth/cdn/src/main.ts",
+        "tsConfig": "apps/api/auth/cdn/tsconfig.app.json",
         "externalDependencies": ["aws-sdk"],
         "deleteOutputPath": true,
-        "tsConfig": "apps/api/main/tsconfig.app.json"
+        "webpackConfig": "apps/api/auth/cdn/webpack.config.js"
       },
       "configurations": {
         "production": {
@@ -40,23 +41,22 @@
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
-        "buildTarget": "api-main:build"
+        "buildTarget": "api-auth-cdn:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/api/main/**/*.ts"]
+        "lintFilePatterns": ["apps/api/auth/cdn/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/api/main"],
+      "outputs": ["coverage/apps/api/auth/cdn"],
       "options": {
-        "jestConfig": "apps/api/main/jest.config.js",
-        "passWithNoTests": true,
-        "codeCoverage": true
+        "jestConfig": "apps/api/auth/cdn/jest.config.js",
+        "passWithNoTests": true
       }
     }
   },

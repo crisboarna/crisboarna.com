@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Reveal } from 'react-awesome-reveal';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import anime from 'animejs/lib/anime.es.js';
 import { fadeInUp } from '../../utils/animations';
 import Counter from './counter';
+import { counters } from '../../constants';
 
 const Counters = () => {
   const countUp = (el: Element, target: number) => {
@@ -17,7 +17,6 @@ const Counters = () => {
       delay: 200,
       easing: 'easeOutCubic',
       update() {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         el.innerText = data.count.toLocaleString();
       },
@@ -49,14 +48,13 @@ const Counters = () => {
       <div className="container">
         <Reveal keyframes={fadeInUp} triggerOnce={true}>
           <div className="row">
-            <Counter text="200" description="Total Projects" icon="briefcase" />
-            <Counter text="120" description="Happy Clients" icon="happy" />
-            <Counter
-              text="10"
-              description="Years of Experience"
-              icon="calendar"
-            />
-            <Counter text="5" description="Certifications" icon="trophy" />
+            {counters.map((counter) => (
+              <Counter
+                value={counter.value}
+                description={counter.description}
+                icon={counter.icon}
+              />
+            ))}
           </div>
         </Reveal>
       </div>

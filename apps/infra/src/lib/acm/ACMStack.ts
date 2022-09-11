@@ -7,6 +7,7 @@ import {
   CertificateValidation,
 } from 'aws-cdk-lib/aws-certificatemanager';
 import { SSMUtil } from 'aws-cdk-lib-util';
+import { ENV } from '../../config';
 
 /**
  * Stack creating the ACM certificates for Cloudfront/API Gateway
@@ -23,6 +24,13 @@ export class ACMStack extends Stack {
       stackEnv,
     } = props;
 
+    let domainTarget;
+    if (stackEnv !== ENV.PROD) {
+      domainTarget = `${stackEnv.toLowerCase()}.${domainName}`;
+    } else {
+      domainTarget = domainName;
+    }
+
     const zone = HostedZone.fromHostedZoneId(
       this,
       `${projectName}-ACM-Zone-Import-${stackEnv}`,
@@ -33,8 +41,8 @@ export class ACMStack extends Stack {
       this,
       `${projectName}-ACM-Cert-${stackEnv}`,
       {
-        domainName,
-        subjectAlternativeNames: [`*.${domainName}`],
+        domainName: domainTarget,
+        subjectAlternativeNames: [`*.${domainTarget}`],
         validation: CertificateValidation.fromDns(zone),
       }
     );

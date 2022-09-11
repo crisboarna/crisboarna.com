@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "api-auth-cdn": "apps/api/auth/cdn",
+    "api-auth-gateway": "apps/api/auth/gateway",
     "api-main": "apps/api/main",
     "common-api": "libs/common-api",
     "infra": "apps/infra",

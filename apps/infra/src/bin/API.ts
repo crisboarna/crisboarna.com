@@ -20,6 +20,7 @@ new APIStack(
       account: process.env.AWS_CDK_ACCOUNT,
       region: process.env.AWS_CDK_REGION,
     },
+    authIdentitySource: process.env[APIConstants.INFRA_GATEWAY_HEADER_AUTH_KEY],
     domainName: process.env.AWS_CDK_DOMAIN_NAME,
     projectName: APIConstants.PROJECT_NAME,
     stackEnv: ENV,

@@ -1,10 +1,16 @@
+import React, { ReactElement } from 'react';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AWS from './assets/images/awards/aws.png';
 import K8 from './assets/images/awards/k8.png';
 import R3 from './assets/images/awards/r3.png';
 import Post from './assets/images/blog/post.jpg';
-import React, { ReactElement } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+import Img1 from './assets/images/portofolio/1.jpg';
+import Img2 from './assets/images/portofolio/2.jpg';
+import Img3 from './assets/images/portofolio/3.jpg';
+import Img4 from './assets/images/portofolio/4.jpg';
+import Img9 from './assets/images/portofolio/9.jpg';
+import Img10 from './assets/images/portofolio/10.jpg';
 
 export interface ConstContactProps {
   readonly id: number;
@@ -43,7 +49,33 @@ export const ICONS: { [key: string]: ReactElement } = {
       className={'icon'}
     />
   ),
+  envelope: (
+    <FontAwesomeIcon
+      icon={icon({
+        style: 'regular',
+        name: 'envelope',
+      })}
+      className={'icon'}
+    />
+  ),
 };
+
+export const counters = [
+  { id: 1, value: 183, description: 'Total Projects', icon: 'briefcase' },
+  { id: 2, value: 114, description: 'Happy Clients', icon: 'happy' },
+  { id: 3, value: 10, description: 'Years of Experience', icon: 'calendar' },
+  { id: 4, value: 5, description: 'Certifications', icon: 'trophy' },
+];
+
+export const portfolio = [
+  { title: 'WEB DESIGN', categories: ['tech', 'develop'], image: Img1 },
+  { title: 'WEB DESIGN', categories: ['web', 'develop'], image: Img2 },
+  { title: 'WEB DESIGN', categories: ['market', 'develop'], image: Img9 },
+  { title: 'WEB DESIGN', categories: ['web'], image: Img10 },
+  { title: 'WEB DESIGN', categories: ['web', 'market'], image: Img3 },
+  { title: 'WEB DESIGN', categories: ['develop'], image: Img4 },
+  { title: 'WEB DESIGN', categories: ['develop'], image: Img4 },
+];
 
 export const services = [
   {

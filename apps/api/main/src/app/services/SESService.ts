@@ -9,10 +9,7 @@ export class SESService {
   private ses: SESV2;
 
   constructor() {
-    config.update({
-      region: process.env[APIConstants.REGION],
-    });
-    this.ses = new SESV2();
+    this.ses = new SESV2({ region: process.env[APIConstants.REGION] });
   }
 
   public async sendEmail(

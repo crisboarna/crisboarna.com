@@ -1,12 +1,12 @@
 import React, { VFC } from 'react';
 
 export interface CounterProps {
-  readonly text: string;
+  readonly value: number;
   readonly description: string;
   readonly icon: string;
 }
 
-const Counter: VFC<CounterProps> = ({ text, description, icon }) => (
+const Counter: VFC<CounterProps> = ({ value, description, icon }) => (
   <div className={`col-md-3 col-sm-6`}>
     <div
       className="counter_item text-center wow fadeInUp"
@@ -14,7 +14,7 @@ const Counter: VFC<CounterProps> = ({ text, description, icon }) => (
     >
       <i className={`icon-${icon}`}></i>
       <h3 className="t_color" data-countup>
-        {text}
+        {value}
       </h3>
       <p>{description}</p>
     </div>

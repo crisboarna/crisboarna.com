@@ -1,0 +1,7 @@
+{
+  "Parameters": {
+    "ENV": "DEV",
+    "INFRA_GATEWAY_HEADER_AUTH_KEY": "HEADER_TEST",
+    "INFRA_GATEWAY_HEADER_AUTH_VALUE": "TEST_VALUE"
+  }
+}

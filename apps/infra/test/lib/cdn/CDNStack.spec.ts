@@ -1,7 +1,7 @@
 import { PROJECT_NAME } from '../../../src/config';
 import { App } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
-import { CDNStack } from '../../../src/lib/cdn/CDNStack';
+import { CDNStackWeb } from '../../../src/lib/cdn/CDNStack';
 import { CDNStackProps } from '../../../src/interfaces';
 
 describe('CDNStack', function () {
@@ -28,7 +28,7 @@ describe('CDNStack', function () {
     const props: CDNStackProps = {
       apiIdParamName,
       apiRegion,
-      cdnParamName,
+      cdnParamNameApi: cdnParamName,
       env,
       domainCertParamName,
       domainName,
@@ -37,7 +37,7 @@ describe('CDNStack', function () {
     };
 
     // when
-    const stack = new CDNStack(app, 'CDNStack', props);
+    const stack = new CDNStackWeb(app, 'CDNStack', props);
 
     // then
     const template = Template.fromStack(stack);

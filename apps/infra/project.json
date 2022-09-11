@@ -77,8 +77,26 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts'"
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' --all"
         ]
+      }
+    },
+    "deploy:cdn:api": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' CRISBOARNA-CDN-Api-${ENV}"
+        ],
+        "envFile": ".env"
+      }
+    },
+    "deploy:cdn:web": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' CRISBOARNA-CDN-Web-${ENV}"
+        ],
+        "envFile": ".env"
       }
     },
     "deploy:api": {
@@ -93,9 +111,10 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "nx build api",
-          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts'"
-        ]
+          "nx run-many --target=build --projects=api-main,api-auth-cdn,api-auth-gateway",
+          "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts' --all"
+        ],
+        "parallel": false
       }
     },
     "deploy:monitoring-wrapper": {

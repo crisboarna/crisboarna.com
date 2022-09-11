@@ -14,11 +14,17 @@ export const PARAM_ACM_DOMAIN_ARN = `acm/domain/region/arn/`;
 export const PARAM_API_GW_ID = `apigw/id/`;
 
 //===CDN===
-export const PARAM_CDN_ID_API = `cdn/id/api`;
+export const PARAM_CDN_ID_API = `cdn/id/api/`;
+export const PARAM_CDN_ID_WEB = `cdn/id/web/`;
 
 //===LAMBDA===
-export const PARAM_LAMBDA_API_MAIN_ALIAS_ARN = `lambda/alias/arn/api/main`;
-export const PARAM_LAMBDA_API_MAIN_ROLE_ARN = `lambda/role/arn/api/main`;
+export const PARAM_LAMBDA_API_MAIN_ALIAS_ARN = `lambda/alias/arn/api/main/`;
+export const PARAM_LAMBDA_API_MAIN_ROLE_ARN = `lambda/role/arn/api/main/`;
+export const PARAM_LAMBDA_API_AUTH_GATEWAY_ALIAS_ARN = `lambda/alias/arn/api/auth/gateway/`;
+export const PARAM_LAMBDA_API_AUTH_GATEWAY_ROLE_ARN = `lambda/role/arn/api/auth/gateway/`;
+export const PARAM_LAMBDA_API_AUTH_CDN_ALIAS_ARN = `lambda/alias/arn/api/auth/cdn/`;
+export const PARAM_LAMBDA_API_AUTH_CDN_ROLE_ARN = `lambda/role/arn/api/auth/cdn/`;
+export const PARAM_LAMBDA_API_AUTH_CDN_VERSION_ARN = `lambda/version/arn/api/auth/cdn/`;
 
 //===SNS===
 export const PARAM_SNS_ALARMS_ARN = `sns/alarms/arn/`;

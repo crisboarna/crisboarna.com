@@ -1,6 +1,6 @@
 import { Stack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { CDNStackProps } from '../../interfaces';
+import { CDNApiStackProps } from '../../interfaces';
 import { CfnWebACL } from 'aws-cdk-lib/aws-wafv2';
 import { wafRules } from './util';
 import {
@@ -14,24 +14,31 @@ import { HttpOrigin } from 'aws-cdk-lib/aws-cloudfront-origins';
 import { ARecord, HostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
 import { CDKCustomResourceUtil, SSMUtil } from 'aws-cdk-lib-util';
+import { ENV, PARAM_LAMBDA_API_AUTH_CDN_VERSION_ARN } from '../../config';
+import { IVersion, Version } from 'aws-cdk-lib/aws-lambda';
 
 /**
  * Stack creating the Cloudfront Distribution, WAF, R53 mapping that fronts API GW
  */
-export class CDNStack extends Stack {
-  constructor(scope: Construct, id: string, props?: CDNStackProps) {
+export class CDNApiStack extends Stack {
+  constructor(scope: Construct, id: string, props?: CDNApiStackProps) {
     super(scope, id, props);
 
     const {
+      apiAuthHeaderKey,
+      apiAuthHeaderValue,
       apiIdParamName,
       apiRegion,
-      cdnParamName,
+      cdnParamNameApi,
       env,
       domainCertParamName,
       domainName,
       projectName,
       stackEnv,
     } = props;
+
+    const subdomainFragmentApi =
+      stackEnv === ENV.PROD ? `api` : `api.${stackEnv.toLowerCase()}`;
 
     const [domainCertArn] = [domainCertParamName].map(
       (paramName) => <string>SSMUtil.getSSMParameter({
@@ -53,39 +60,59 @@ export class CDNStack extends Stack {
 
     const certificate = Certificate.fromCertificateArn(
       this,
-      `${projectName}-CDN-ACM-Cert-Import-${stackEnv}`,
+      `${projectName}-CDN-Api-ACM-Cert-Import-${stackEnv}`,
       domainCertArn
     );
 
     const wafv2 = new CfnWebACL(this, `${projectName}-WAF-${stackEnv}`, {
-      name: `${projectName}-WAF-${stackEnv}`,
-      description: `WAF for ${projectName} API`,
+      name: `${projectName}-WAF-Api-${stackEnv}`,
+      description: `WAF for ${projectName} API ${stackEnv}`,
       scope: 'CLOUDFRONT',
       defaultAction: {
         allow: {},
       },
       visibilityConfig: {
         cloudWatchMetricsEnabled: true,
-        metricName: `${projectName.toLowerCase()}-waf-access-${stackEnv.toLowerCase()}`,
+        metricName: `${projectName.toLowerCase()}-waf-access-api-${stackEnv.toLowerCase()}`,
         sampledRequestsEnabled: true,
       },
-      rules: wafRules(projectName, stackEnv),
+      rules: wafRules(projectName, stackEnv, 'api'),
     });
+
+    let lambdaAuthCdn: IVersion | undefined;
+
+    if (stackEnv !== ENV.PROD) {
+      const lambdaAuthCdnArn = <string>SSMUtil.getSSMParameter({
+        scope: this,
+        projectName,
+        stackEnv,
+        paramName: PARAM_LAMBDA_API_AUTH_CDN_VERSION_ARN,
+        extract: true,
+      });
+      lambdaAuthCdn = Version.fromVersionArn(
+        this,
+        `${projectName}-CDN-Lambda-Edge-${stackEnv}`,
+        lambdaAuthCdnArn
+      );
+    }
 
     const cdnDistribution = new Distribution(
       this,
-      `${projectName}-CDN-${stackEnv}`,
+      `${projectName}-CDN-API-${stackEnv}`,
       {
-        comment: `${projectName}${stackEnv}`,
+        comment: `${projectName}API${stackEnv}`,
         webAclId: wafv2.attrArn,
         enabled: true,
         httpVersion: HttpVersion.HTTP2,
         certificate,
-        domainNames: [`api.${domainName}`],
+        domainNames: [`${subdomainFragmentApi}.${domainName}`],
         defaultBehavior: {
           origin: new HttpOrigin(
             `${apiGatewayId}.execute-api.${apiRegion}.amazonaws.com`,
-            { originPath: '/prod' }
+            {
+              originPath: '/prod',
+              customHeaders: { [apiAuthHeaderKey]: apiAuthHeaderValue },
+            }
           ),
           allowedMethods: AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
           viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
@@ -95,15 +122,15 @@ export class CDNStack extends Stack {
 
     const zone = HostedZone.fromLookup(
       this,
-      `${projectName}-R53-Zone-${stackEnv}`,
+      `${projectName}-CDN-Api-R53-Zone-${stackEnv}`,
       {
         domainName,
       }
     );
 
-    new ARecord(this, `${projectName}-R53-A-${stackEnv}`, {
+    new ARecord(this, `${projectName}-R53-A-API-${stackEnv}`, {
       zone,
-      recordName: 'api',
+      recordName: subdomainFragmentApi,
       target: RecordTarget.fromAlias(new CloudFrontTarget(cdnDistribution)),
     });
 
@@ -111,7 +138,7 @@ export class CDNStack extends Stack {
       scope: this,
       projectName,
       stackEnv,
-      paramName: cdnParamName,
+      paramName: cdnParamNameApi,
       value: cdnDistribution.distributionId,
     });
   }

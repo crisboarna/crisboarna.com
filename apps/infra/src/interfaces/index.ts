@@ -12,7 +12,7 @@ export type IDomainConfig = {
   readonly domainName: string;
 };
 
-export type IAPIProps = IDomainConfig;
+export type IAPIProps = IDomainConfig & { readonly authIdentitySource: string };
 
 //===CI===
 export type CIProps = OpenIdConnectProviderProps & {
@@ -20,19 +20,28 @@ export type CIProps = OpenIdConnectProviderProps & {
 };
 
 //===CDN===
-export type ICDNProps = {
+export type ICDNApiProps = {
   readonly apiIdParamName: string;
   readonly apiRegion: string;
+  readonly apiAuthHeaderKey: string;
+  readonly apiAuthHeaderValue: string;
   readonly domainCertParamName: string;
   readonly domainName: string;
-  readonly cdnParamName: string;
+  readonly cdnParamNameApi: string;
+};
+
+export type ICDNWebProps = {
+  readonly artifactPathWeb: string;
+  readonly domainCertParamName: string;
+  readonly domainName: string;
+  readonly cdnParamNameWeb: string;
 };
 
 export type CIStackProps = CIProps & IBaseStackProps;
 export type ACMStackProps = IACMConfig & IBaseStackProps;
 export type ACMCloudfrontStackProps = IACMConfig & IBaseStackProps;
 export type APIStackProps = IAPIProps & IBaseStackProps;
-export type CDNStackProps = ICDNProps & IBaseStackProps;
-export type S3StackProps = IBaseStackProps;
+export type CDNApiStackProps = ICDNApiProps & IBaseStackProps;
+export type CDNWebStackProps = ICDNWebProps & IBaseStackProps;
 export type MonitoringBaseStackProps = IBaseStackProps;
 export type MonitoringWrapperStackProps = IBaseStackProps;

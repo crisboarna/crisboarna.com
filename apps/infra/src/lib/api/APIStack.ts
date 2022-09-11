@@ -4,6 +4,7 @@ import { APIStackProps } from '../../interfaces';
 import {
   CfnApi,
   CfnApiMapping,
+  CfnAuthorizer,
   CfnDomainName,
   CfnIntegration,
   CfnRoute,
@@ -13,6 +14,7 @@ import {
   ENV,
   PARAM_ACM_DOMAIN_ARN,
   PARAM_API_GW_ID,
+  PARAM_LAMBDA_API_AUTH_GATEWAY_ALIAS_ARN,
   PARAM_LAMBDA_API_MAIN_ALIAS_ARN,
 } from '../../config';
 import { ARecord, HostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
@@ -26,14 +28,17 @@ export class APIStack extends Stack {
   constructor(scope: Construct, id: string, props?: APIStackProps) {
     super(scope, id, props);
 
-    const { domainName, projectName, stackEnv } = props;
+    const { authIdentitySource, domainName, env, projectName, stackEnv } =
+      props;
 
     const [
       // domainCertArn,
-      lambdaApiArn,
+      lambdaApiMainArn,
+      lambdaApiAuthGatewayArn,
     ] = [
       // PARAM_ACM_DOMAIN_ARN,
       PARAM_LAMBDA_API_MAIN_ALIAS_ARN,
+      PARAM_LAMBDA_API_AUTH_GATEWAY_ALIAS_ARN,
     ].map(
       (paramName) => <string>SSMUtil.getSSMParameter({
           scope: this,
@@ -76,7 +81,13 @@ export class APIStack extends Stack {
     //   ),
     // });
 
-    const origins = [`https://${domainName}`, `https://cv.${domainName}`];
+    const origins = [
+      `https://${
+        stackEnv === ENV.PROD
+          ? domainName
+          : `${stackEnv.toLowerCase()}.${domainName}`
+      }`,
+    ];
 
     const httpApi = new CfnApi(this, `${projectName}-API-GW-${stackEnv}`, {
       name: `${projectName}-API-${stackEnv}`,
@@ -101,6 +112,20 @@ export class APIStack extends Stack {
       },
     });
 
+    const authorizer = new CfnAuthorizer(
+      this,
+      `${projectName}-API-Authorizer-${stackEnv}`,
+      {
+        apiId: httpApi.ref,
+        name: `${projectName}-API-Authorizer-${stackEnv}`,
+        enableSimpleResponses: true,
+        authorizerType: 'REQUEST',
+        authorizerPayloadFormatVersion: '2.0',
+        authorizerUri: `arn:aws:apigateway:${env.region}:lambda:path/2015-03-31/functions/${lambdaApiAuthGatewayArn}/invocations`,
+        identitySource: [`$request.header.${authIdentitySource}`],
+      }
+    );
+
     const lambdaApiCfnIntegration = new CfnIntegration(
       this,
       `${projectName}-API-Integration-${stackEnv}`,
@@ -108,7 +133,7 @@ export class APIStack extends Stack {
         apiId: httpApi.ref,
         integrationType: 'AWS_PROXY',
         payloadFormatVersion: '1.0',
-        integrationUri: lambdaApiArn,
+        integrationUri: lambdaApiMainArn,
       }
     );
 
@@ -116,6 +141,8 @@ export class APIStack extends Stack {
       apiId: httpApi.ref,
       routeKey: '$default',
       target: `integrations/${lambdaApiCfnIntegration.ref}`,
+      authorizationType: 'CUSTOM',
+      authorizerId: authorizer.ref,
     });
 
     new CfnRoute(this, `${projectName}-API-GW-CORS-Route-${stackEnv}`, {
