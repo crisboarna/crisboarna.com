@@ -21,6 +21,12 @@ body.swal2-shown > [aria-hidden="true"] {
     height: 100vh;
 }
 
+/*portfolio card*/
+.portfolio-card-img {
+    width: 30vw;
+    height: 50vh;
+}
+
 /*portfolio chip*/
 .chip{
     display: inline-flex;
@@ -42,7 +48,7 @@ body.swal2-shown > [aria-hidden="true"] {
 }
 
 .chip-content{
-    cursor: inherit;
+    cursor: pointer;
     display: flex;
     align-items: center;
     user-select: none;

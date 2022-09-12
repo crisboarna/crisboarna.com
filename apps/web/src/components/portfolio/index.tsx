@@ -56,9 +56,10 @@ const Portfolio = () => {
   const showModal = useCallback((data: PortfolioCardProps) => {
     SwalModal.fire({
       title: data.title,
+      showConfirmButton: false,
+      showCloseButton: true,
       width: '70%',
       html: <PortfolioCard key={data.title} {...data} />,
-      showConfirmButton: false,
     });
   }, []);
 
@@ -88,6 +89,14 @@ const Portfolio = () => {
               Web
             </li>
             <li
+              className={onActive(`typescript`)}
+              data-wow-delay="0.6s"
+              data-filter="typescript"
+              onClick={() => onFilterChange('typescript')}
+            >
+              Typescript
+            </li>
+            <li
               className={onActive(`go`)}
               data-wow-delay="0.6s"
               data-filter=".go"
@@ -110,14 +119,6 @@ const Portfolio = () => {
               onClick={() => onFilterChange('mobile')}
             >
               Mobile
-            </li>
-            <li
-              className={onActive(`typescript`)}
-              data-wow-delay="0.6s"
-              data-filter="typescript"
-              onClick={() => onFilterChange('typescript')}
-            >
-              Typescript
             </li>
             <li
               className={onActive(`oss`)}

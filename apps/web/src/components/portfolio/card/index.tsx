@@ -17,7 +17,7 @@ const PortfolioCard: VFC<PortfolioCardProps> = ({
   <div className={'container-fluid'}>
     <div className={'row'}>
       <div className={'col-sm-6'}>
-        <img src={image} width={380} height={450} />
+        <img src={image} className={'portfolio-card-img'} />
       </div>
       <div className={'col-sm-6'}>
         <h3>{subtitle}</h3>
