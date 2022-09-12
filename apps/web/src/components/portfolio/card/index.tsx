@@ -16,16 +16,13 @@ const PortfolioCard: VFC<PortfolioCardProps> = ({
 }) => (
   <div className={'container-fluid'}>
     <div className={'row'}>
-      <div className={'col-sm-6'}>
-        <img src={image} className={'portfolio-card-img'} />
+      <div className={'col-sm-6 pt-3 pb-3'}>
+        <img src={image} className={'portfolio_card_img'} />
       </div>
       <div className={'col-sm-6'}>
-        <h3>{subtitle}</h3>
-        <br />
-        <p>{body}</p>
-        <br />
-        <br />
-        <h6>Technologies</h6>
+        <h3 className={'pb-3 pt-1 font-weight-bold'}>{subtitle}</h3>
+        <p className={'pb-4 font-weight-normal'}>{body}</p>
+        <h6 className={'font-weight-bold'}>Technologies</h6>
         {tech.map((entry) => (
           <div className="chip">
             <div className="chip-content">{entry}</div>

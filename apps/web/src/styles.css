@@ -22,9 +22,15 @@ body.swal2-shown > [aria-hidden="true"] {
 }
 
 /*portfolio card*/
-.portfolio-card-img {
+.portfolio_card_img {
     width: 30vw;
     height: 50vh;
+}
+
+.portfolio_card_img:hover {
+    border-radius: 30px 100px 0px 150px;
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 /*portfolio chip*/
@@ -33,7 +39,7 @@ body.swal2-shown > [aria-hidden="true"] {
     flex-direction: row;
     background-color: #e5e5e5;
     border: none;
-    cursor: default;
+    cursor: pointer;
     height: 36px;
     outline: none;
     margin: 0.5rem;
@@ -48,13 +54,16 @@ body.swal2-shown > [aria-hidden="true"] {
 }
 
 .chip-content{
-    cursor: pointer;
     display: flex;
     align-items: center;
     user-select: none;
     white-space: nowrap;
     padding-left: 12px;
     padding-right: 12px;
+}
+
+.chip:hover {
+    box-shadow: 1px 1px 5px 1px #0db3c7;
 }
 
 .centered {

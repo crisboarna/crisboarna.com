@@ -55,7 +55,7 @@ const Portfolio = () => {
 
   const showModal = useCallback((data: PortfolioCardProps) => {
     SwalModal.fire({
-      title: data.title,
+      title: <h1 className={'font-weight-bold'}>{data.title}</h1>,
       showConfirmButton: false,
       showCloseButton: true,
       width: '70%',
