@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import SectionTitle from '../section-title';
 import Isotope from 'isotope-layout';
 import ImagesLoaded from 'imagesloaded';
-import SectionTitle from '../section-title';
-import PortfolioItem from './item';
 import { portfolio } from '../../constants';
 
 const Portfolio = () => {
@@ -69,7 +68,7 @@ const Portfolio = () => {
             <li
               className={onActive('web')}
               data-wow-delay="0.3s"
-              data-filter=".web"
+              data-filter="web"
               onClick={() => onFilterChange('web')}
             >
               Web
@@ -93,7 +92,7 @@ const Portfolio = () => {
             <li
               className={onActive(`mobile`)}
               data-wow-delay="0.6s"
-              data-filter=".mobile"
+              data-filter="mobile"
               onClick={() => onFilterChange('mobile')}
             >
               Mobile
@@ -101,15 +100,35 @@ const Portfolio = () => {
             <li
               className={onActive(`oss`)}
               data-wow-delay="0.8s"
-              data-filter=".oss"
+              data-filter="oss"
               onClick={() => onFilterChange('oss')}
             >
               Open Source
             </li>
           </ul>
-          <div className={'grid row'}>
+
+          <div className="grid row">
             {portfolio.map((item) => (
-              <PortfolioItem key={item.title} {...item} />
+              <div
+                key={item.title}
+                className={`col-md-3 col-sm-6 col-xs-12 grid-item ${item.categories.join(
+                  ' '
+                )}`}
+              >
+                <div className="portfolio hover-style">
+                  <img src={item.image} alt={item.imageAlt} />
+                  <div className="item-img-overlay">
+                    <div className="overlay-info text-center">
+                      <h6 className="sm-titl">{item.title}</h6>
+                      <div className="icons">
+                        <a href=".#">
+                          <i className="icon-magnifying-glass"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
