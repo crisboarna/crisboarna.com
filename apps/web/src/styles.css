@@ -3,6 +3,10 @@
 @import "assets/fonts/etline/et-line.css";
 @import "assets/fonts/elegant/elegant.css";
 
+html {
+    scroll-behavior: smooth;
+}
+
 /*sweetaler2*/
 body.swal2-shown > [aria-hidden="true"] {
     transition: 0.1s filter;
@@ -10,6 +14,12 @@ body.swal2-shown > [aria-hidden="true"] {
 }
 
 /*sweetalert2*/
+
+/*cv spacing*/
+.cv-spacing {
+    padding-top: 5.5rem;
+    height: 100vh;
+}
 
 .centered {
     position: fixed;

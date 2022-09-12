@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Sticky from 'react-stickynode';
-import { NavLink } from 'react-router-dom';
-import { Link } from 'react-scroll';
+import { Link as NavLink, useLocation } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 import Logo from '../../assets/images/logo60.png';
 import Logo2 from '../../assets/images/logo260.png';
 
 const Header = () => {
+  const location = useLocation();
+  const [isCV, setIsCV] = useState(false);
+  let Link: typeof NavLink | typeof ScrollLink =
+    location.pathname === '/cv' ? NavLink : ScrollLink;
+
+  useEffect(() => {
+    if (location.pathname === '/cv') {
+      setIsCV(true);
+      Link = NavLink;
+    } else {
+      Link = ScrollLink;
+    }
+  }, [location.pathname]);
+
   return (
-    <Sticky top={0} innerZ={9999} activeClass="navbar_fixed">
+    <Sticky
+      top={0}
+      innerZ={9999}
+      activeClass="navbar_fixed"
+      className={isCV ? 'navbar_fixed' : ''}
+    >
       <nav className={`navbar navbar-expand-lg navbar-light`}>
         <div className={`container`}>
           <a className="navbar-brand logo_h" href="./">
@@ -39,7 +58,7 @@ const Header = () => {
                 <Link
                   className="nav-link"
                   activeClass="active"
-                  to="banner"
+                  to={isCV ? '/#banner' : 'banner'}
                   spy={true}
                   smooth={true}
                   offset={0}
@@ -52,7 +71,7 @@ const Header = () => {
                 <Link
                   className="nav-link"
                   activeClass="active"
-                  to="service"
+                  to={isCV ? '/#service' : 'service'}
                   spy={true}
                   smooth={true}
                   offset={-86}
@@ -65,7 +84,7 @@ const Header = () => {
                 <Link
                   className="nav-link"
                   activeClass="active"
-                  to="portfolio"
+                  to={isCV ? '/#portfolio' : 'portfolio'}
                   spy={true}
                   smooth={true}
                   offset={-86}
@@ -78,7 +97,7 @@ const Header = () => {
                 <Link
                   className="nav-link"
                   activeClass="active"
-                  to="certifications"
+                  to={isCV ? '/#certifications' : 'certifications'}
                   spy={true}
                   smooth={true}
                   offset={-86}
@@ -91,7 +110,7 @@ const Header = () => {
                 <Link
                   className="nav-link"
                   activeClass="active"
-                  to="blog"
+                  to={isCV ? '/#blog' : 'blog'}
                   spy={true}
                   smooth={true}
                   offset={-86}
@@ -104,7 +123,7 @@ const Header = () => {
                 <Link
                   className="nav-link"
                   activeClass="active"
-                  to="contact"
+                  to={isCV ? '/#contact' : 'contact'}
                   spy={true}
                   smooth={true}
                   offset={-86}
