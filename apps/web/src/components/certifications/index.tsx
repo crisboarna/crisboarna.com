@@ -1,5 +1,6 @@
 import React from 'react';
 import { Reveal } from 'react-awesome-reveal';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Certification from './certification';
 import { certifications } from '../../constants';
 import Background from '../../assets/images/awards/bg.png';
@@ -8,7 +9,12 @@ import SectionTitle from '../section-title';
 
 const Certifications = () => (
   <section className="awards_area bg_color_two sec_pad" id={'certifications'}>
-    <img className="shape one" src={Background} alt="" />
+    <LazyLoadImage
+      className={'shape one'}
+      src={Background}
+      alt={'Background'}
+      effect={'blur'}
+    />
     <div className="container">
       <SectionTitle
         title={'Certifications'}
@@ -23,7 +29,7 @@ const Certifications = () => (
           triggerOnce={true}
         >
           {certifications.map((award) => (
-            <Certification award={award} key={award.title} />
+            <Certification key={award.title} {...award} />
           ))}
         </Reveal>
       </div>

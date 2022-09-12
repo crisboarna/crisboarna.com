@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import GolangLogo from '../../assets/images/tools/golang.png';
 import ReactLogo from '../../assets/images/tools/react.png';
 import DartLogo from '../../assets/images/tools/dart.png';
@@ -12,25 +13,29 @@ const Tools = () => (
     <div className="container">
       <div className="clients_intrigration">
         <a href=".#" className="c_items">
-          <img src={GolangLogo} alt="Golang Logo" />
+          <LazyLoadImage src={GolangLogo} alt={'Golang Logo'} effect={'blur'} />
         </a>
         <a href=".#" className="c_items">
-          <img src={ReactLogo} alt="React Logo" />
+          <LazyLoadImage src={ReactLogo} alt={'React Logo'} effect={'blur'} />
         </a>
         <a href=".#" className="c_items">
-          <img src={DartLogo} alt="Dart Logo" />
+          <LazyLoadImage src={DartLogo} alt={'Dart Logo'} effect={'blur'} />
         </a>
         <a href=".#" className="c_items middle">
-          <img src={FlutterLogo} alt="Flutter Logo" />
+          <LazyLoadImage
+            src={FlutterLogo}
+            alt={'Flutter Logo'}
+            effect={'blur'}
+          />
         </a>
         <a href=".#" className="c_items">
-          <img src={PythonLogo} alt="Python Logo" />
+          <LazyLoadImage src={PythonLogo} alt={'Python Logo'} effect={'blur'} />
         </a>
         <a href=".#" className="c_items">
-          <img src={KafkaLogo} alt="Kafka Logo" />
+          <LazyLoadImage src={KafkaLogo} alt={'Kafka Logo'} effect={'blur'} />
         </a>
         <a href=".#" className="c_items">
-          <img src={KotlinLogo} alt="Kotlin Logo" />
+          <LazyLoadImage src={KotlinLogo} alt={'Kotlin Logo'} effect={'blur'} />
         </a>
       </div>
     </div>

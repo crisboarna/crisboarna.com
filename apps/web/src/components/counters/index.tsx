@@ -49,11 +49,7 @@ const Counters = () => {
         <Reveal keyframes={fadeInUp} triggerOnce={true}>
           <div className="row">
             {counters.map((counter) => (
-              <Counter
-                value={counter.value}
-                description={counter.description}
-                icon={counter.icon}
-              />
+              <Counter key={counter.description} {...counter} />
             ))}
           </div>
         </Reveal>

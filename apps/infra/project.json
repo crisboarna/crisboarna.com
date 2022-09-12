@@ -94,8 +94,10 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
+          "nx build web",
           "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' CRISBOARNA-CDN-Web-${ENV}"
         ],
+        "parallel": false,
         "envFile": ".env"
       }
     },

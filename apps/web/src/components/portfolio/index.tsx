@@ -64,40 +64,52 @@ const Portfolio = () => {
               data-filter="*"
               onClick={() => onFilterChange('*')}
             >
-              ALL
+              All
             </li>
             <li
               className={onActive('web')}
               data-wow-delay="0.3s"
-              data-filter="web"
+              data-filter=".web"
               onClick={() => onFilterChange('web')}
             >
-              Web Design
+              Web
             </li>
             <li
-              className={onActive(`develop`)}
+              className={onActive(`go`)}
               data-wow-delay="0.6s"
-              data-filter="develop"
-              onClick={() => onFilterChange('develop')}
+              data-filter=".go"
+              onClick={() => onFilterChange('go')}
             >
-              Development
+              Go
             </li>
             <li
-              className={onActive(`market`)}
-              data-wow-delay="0.8s"
-              data-filter="market"
-              onClick={() => onFilterChange('market')}
+              className={onActive(`cpp`)}
+              data-wow-delay="0.6s"
+              data-filter=".cpp"
+              onClick={() => onFilterChange('cpp')}
             >
-              Marketing
+              C++
+            </li>
+            <li
+              className={onActive(`mobile`)}
+              data-wow-delay="0.6s"
+              data-filter=".mobile"
+              onClick={() => onFilterChange('mobile')}
+            >
+              Mobile
+            </li>
+            <li
+              className={onActive(`oss`)}
+              data-wow-delay="0.8s"
+              data-filter=".oss"
+              onClick={() => onFilterChange('oss')}
+            >
+              Open Source
             </li>
           </ul>
           <div className={'grid row'}>
             {portfolio.map((item) => (
-              <PortfolioItem
-                title={item.title}
-                categories={item.categories}
-                image={item.image}
-              />
+              <PortfolioItem key={item.title} {...item} />
             ))}
           </div>
         </div>

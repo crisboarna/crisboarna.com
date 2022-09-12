@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noPropertyAccessFromIndexSignature": false,
+    "resolveJsonModule": true,
     "outDir": "../../dist/out-tsc",
     "types": ["node"]
   },

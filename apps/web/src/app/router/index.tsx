@@ -1,12 +1,31 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Home from "../../pages/home";
-import NotFound from "../../pages/not-found";
+import React, { Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Loading from '../../components/loading';
 
-const Router = () => <BrowserRouter>
-        <Routes>
-            <Route path={"/"} element={<Home/>} />
-            <Route path={"*"} element={<NotFound/>} />
-        </Routes>
-    </BrowserRouter>
+const Home = React.lazy(() => import('../../pages/home'));
+const NotFound = React.lazy(() => import('../../pages/not-found'));
+
+const Router = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route
+        path={'/'}
+        element={
+          <Suspense fallback={<Loading />}>
+            <Home />
+          </Suspense>
+        }
+      />
+      <Route
+        path={'*'}
+        element={
+          <Suspense fallback={<Loading />}>
+            <NotFound />
+          </Suspense>
+        }
+      />
+    </Routes>
+  </BrowserRouter>
+);
 
 export default Router;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/header';
 import Banner from '../../components/banner';
 import Services from '../../components/services';
@@ -11,18 +11,24 @@ import Contact from '../../components/contact';
 import Footer from '../../components/footer';
 
 const Home = () => {
+  const [onReady, setOnReady] = useState(false);
+
   return (
     <div className={'body_wrapper'}>
       <Header />
-      <Banner />
-      <Services />
-      <Tools />
-      <Portfolio />
-      <Counters />
-      <Certifications />
-      <Blog />
-      <Contact />
-      <Footer />
+      <Banner onReady={() => setOnReady(true)} />
+      {onReady && (
+        <React.Fragment>
+          <Services />
+          <Tools />
+          <Portfolio />
+          <Counters />
+          <Certifications />
+          <Blog />
+          <Contact />
+          <Footer />
+        </React.Fragment>
+      )}
     </div>
   );
 };

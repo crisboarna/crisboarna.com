@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ContactImage from '../../assets/images/svg/contact.svg';
 
 const NotFound = () => (
@@ -16,7 +17,11 @@ const NotFound = () => (
             Go Back to Home
           </a>
           <h1>404</h1>
-          <img src={ContactImage} alt="" />
+          <LazyLoadImage
+            src={ContactImage}
+            alt={'Not Found Image'}
+            effect={'blur'}
+          />
         </div>
       </div>
     </section>

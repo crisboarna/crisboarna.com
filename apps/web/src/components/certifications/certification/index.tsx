@@ -1,27 +1,32 @@
 import React, { VFC } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-export interface Certification {
+export interface CertificationProps {
   readonly title: string;
   readonly description: string;
   readonly image: string;
+  readonly imageAlt: string;
   readonly url: string;
   readonly urlText: string;
 }
 
-export interface CertificationProps {
-  readonly award: Certification;
-}
-
-const Certification: VFC<CertificationProps> = ({ award }) => (
-  <div className={''} key={award.title}>
+const Certification: VFC<CertificationProps> = ({
+  title,
+  description,
+  image,
+  imageAlt,
+  url,
+  urlText,
+}) => (
+  <div className={''} key={title}>
     <div className="awards_item wow fadeInUp">
       <div className="icon">
-        <img src={award.image} alt="AWS Logo" />
+        <LazyLoadImage src={image} alt={imageAlt} effect={'blur'} />
       </div>
-      <h4>{award.title}</h4>
-      <p>{award.description}</p>
-      <a href={award.url} className="dev_btn">
-        {award.urlText}
+      <h4>{title}</h4>
+      <p>{description}</p>
+      <a href={url} className="dev_btn">
+        {urlText}
       </a>
     </div>
   </div>

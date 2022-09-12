@@ -3,6 +3,14 @@
 @import "assets/fonts/etline/et-line.css";
 @import "assets/fonts/elegant/elegant.css";
 
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
 .col-md-offset-right-1 {
     margin-right: 8.33333333%;
 }
@@ -1707,12 +1715,7 @@ h6 {
 .banner_shap {
     clip-path: polygon(0 0, 100% 0, 100% 80%, 40% 100%, 0 80%);
 }
-.banner_shap_two:before {
-    background: url(./assets/images/shap1.png) no-repeat scroll center bottom;
-    height: 246px;
-    top: auto;
-    bottom: -1px;
-}
+
 /*======================= red_color css ==================*/
 .red_color .banner_content .social_icon li a,
 .red_color .portfolio .item-img-overlay .overlay-info .icons a:hover {

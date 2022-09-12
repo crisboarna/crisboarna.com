@@ -68,13 +68,48 @@ export const counters = [
 ];
 
 export const portfolio = [
-  { title: 'WEB DESIGN', categories: ['tech', 'develop'], image: Img1 },
-  { title: 'WEB DESIGN', categories: ['web', 'develop'], image: Img2 },
-  { title: 'WEB DESIGN', categories: ['market', 'develop'], image: Img9 },
-  { title: 'WEB DESIGN', categories: ['web'], image: Img10 },
-  { title: 'WEB DESIGN', categories: ['web', 'market'], image: Img3 },
-  { title: 'WEB DESIGN', categories: ['develop'], image: Img4 },
-  { title: 'WEB DESIGN', categories: ['develop'], image: Img4 },
+  {
+    title: 'Kubernetes',
+    categories: ['oss', 'go'],
+    image: Img1,
+    imageAlt: 'CNCF Kubernetes Open Source',
+  },
+  {
+    title: 'Flutter',
+    categories: ['oss', 'mobile'],
+    image: Img2,
+    imageAlt: 'Google Flutter Open Source',
+  },
+  {
+    title: 'AWS CDK',
+    categories: ['oss', 'typescript'],
+    image: Img9,
+    imageAlt: 'AWS CDK Open Source',
+  },
+  {
+    title: 'vcpkg',
+    categories: ['oss', 'cpp'],
+    image: Img10,
+    imageAlt: 'Microsoft VCPKG Open Source',
+  },
+  {
+    title: 'Well Portal',
+    categories: ['web', 'go'],
+    image: Img3,
+    imageAlt: 'alt',
+  },
+  {
+    title: 'CoachCore Admin Portal',
+    categories: ['web', 'typescript'],
+    image: Img4,
+    imageAlt: 'alt',
+  },
+  {
+    title: 'LG NextTV PoC',
+    categories: ['cpp'],
+    image: Img4,
+    imageAlt: 'alt',
+  },
 ];
 
 export const services = [
@@ -130,6 +165,7 @@ export const certifications = [
     url: 'https://aws.amazon.com/certification/certified-solutions-architect-professional/',
     urlText: 'View more',
     image: AWS,
+    imageAlt: 'AWS Logo',
   },
   {
     title: 'AWS Certified DevOps Engineer - Professional',
@@ -138,6 +174,7 @@ export const certifications = [
     url: 'https://aws.amazon.com/certification/certified-devops-engineer-professional/',
     urlText: 'View more',
     image: AWS,
+    imageAlt: 'AWS Logo',
   },
   {
     title: 'AWS Certified Data Analytics – Specialty',
@@ -146,6 +183,7 @@ export const certifications = [
     url: 'https://aws.amazon.com/certification/certified-big-data-specialty/',
     urlText: 'View more',
     image: AWS,
+    imageAlt: 'AWS Logo',
   },
   {
     title: 'Kubernetes Certified Application Developer',
@@ -154,6 +192,7 @@ export const certifications = [
     url: 'https://www.cncf.io/certification/ckad/',
     urlText: 'View more',
     image: K8,
+    imageAlt: 'Kubernetes Logo',
   },
   {
     title: 'Corda Certified Blockchain Developer',
@@ -162,6 +201,7 @@ export const certifications = [
     url: 'https://r3certification.com/',
     urlText: 'View more',
     image: R3,
+    imageAlt: 'R3 Logo',
   },
 ];
 

@@ -23,13 +23,27 @@ import {
   Bucket,
   BucketEncryption,
 } from 'aws-cdk-lib/aws-s3';
-import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import {
+  Effect,
+  ManagedPolicy,
+  PolicyStatement,
+  Role,
+  ServicePrincipal,
+} from 'aws-cdk-lib/aws-iam';
 import {
   BucketDeployment,
   Source,
   StorageClass,
 } from 'aws-cdk-lib/aws-s3-deployment';
-import { IVersion, Version } from 'aws-cdk-lib/aws-lambda';
+import {
+  Architecture,
+  Code,
+  IVersion,
+  Runtime,
+  Version,
+} from 'aws-cdk-lib/aws-lambda';
+import { EdgeFunction } from 'aws-cdk-lib/aws-cloudfront/lib/experimental';
+import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 
 /**
  * Stack creating the Cloudfront Distribution, WAF, R53 mapping that fronts API GW
@@ -95,6 +109,31 @@ export class CDNWebStack extends Stack {
         `${projectName}-CDN-Lambda-Edge-${stackEnv}`,
         lambdaAuthCdnArn
       );
+      // lambdaAuthCdn = new EdgeFunction(
+      //     this,
+      //     `${projectName}-CDN-Auth-${stackEnv}`,
+      //     {
+      //         functionName: `${projectName}-CF-Edge-Auth-${stackEnv}`,
+      //         code: Code.fromAsset(artifactPathWeb),
+      //         runtime: Runtime.NODEJS_16_X,
+      //         handler: 'main.handler',
+      //         retryAttempts: 0,
+      //         memorySize: 128,
+      //         logRetention: RetentionDays.ONE_DAY,
+      //         architecture: Architecture.X86_64,
+      //         currentVersionOptions: { removalPolicy: RemovalPolicy.DESTROY },
+      //         role: new Role(this, `${projectName}-CDN-Auth-Role-${stackEnv}`, {
+      //             roleName: `${projectName}-CDN-Auth-Role-${stackEnv}`,
+      //             description: `Role used for CDN Viewer Request Auth Lambda ${stackEnv}`,
+      //             assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+      //             managedPolicies: [
+      //                 ManagedPolicy.fromAwsManagedPolicyName(
+      //                     'service-role/AWSLambdaBasicExecutionRole'
+      //                 ),
+      //             ],
+      //         }),
+      //     }
+      // );
     }
 
     const originAccessIdentity = new OriginAccessIdentity(

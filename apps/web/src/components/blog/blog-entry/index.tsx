@@ -1,22 +1,24 @@
 import React, { VFC } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-export interface BlogEntry {
+export interface BlogEntryProps {
   readonly title: string;
   readonly description: string;
   readonly date: string;
   readonly image: string;
 }
 
-export interface BlogEntryProps {
-  readonly entry: BlogEntry;
-}
-
-const BlogEntry: VFC<BlogEntryProps> = ({ entry }) => (
-  <div className="col-lg-4 col-sm-6" key={entry.title}>
+const BlogEntry: VFC<BlogEntryProps> = ({
+  title,
+  description,
+  date,
+  image,
+}) => (
+  <div className="col-lg-4 col-sm-6" key={title}>
     <div className="blog_post">
       <div className="blog_img">
-        <img className="img-fluid" src={entry.image} alt="" />
-        <div className="post_date">{entry.date}</div>
+        <LazyLoadImage className={'img-fluid'} src={image} effect={'blur'} />
+        <div className="post_date">{date}</div>
       </div>
       <div className="post_content">
         <div className="blog-meta">
@@ -30,9 +32,9 @@ const BlogEntry: VFC<BlogEntryProps> = ({ entry }) => (
           </span>
         </div>
         <a href="/#">
-          <h2>{entry.title}</h2>
+          <h2>{title}</h2>
         </a>
-        <p>{entry.description}</p>
+        <p>{description}</p>
         <a href="/#" className="read_btn">
           Read more
           <i className="arrow_right"></i>{' '}
