@@ -26,7 +26,11 @@ const PortfolioCard: VFC<PortfolioCardProps> = ({
         <br />
         <br />
         <h6>Technologies</h6>
-        {tech.join(' ')}
+        {tech.map((entry) => (
+          <div className="chip">
+            <div className="chip-content">{entry}</div>
+          </div>
+        ))}
       </div>
     </div>
   </div>

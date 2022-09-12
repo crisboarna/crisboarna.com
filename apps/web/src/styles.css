@@ -21,6 +21,36 @@ body.swal2-shown > [aria-hidden="true"] {
     height: 100vh;
 }
 
+/*portfolio chip*/
+.chip{
+    display: inline-flex;
+    flex-direction: row;
+    background-color: #e5e5e5;
+    border: none;
+    cursor: default;
+    height: 36px;
+    outline: none;
+    margin: 0.5rem;
+    font-size: 14px;
+    font-color: #494949;
+    white-space: nowrap;
+    align-items: center;
+    border-radius: 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    justify-content: center;
+}
+
+.chip-content{
+    cursor: inherit;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    white-space: nowrap;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
 .centered {
     position: fixed;
     top: 50%;
