@@ -3,6 +3,14 @@
 @import "assets/fonts/etline/et-line.css";
 @import "assets/fonts/elegant/elegant.css";
 
+/*sweetaler2*/
+body.swal2-shown > [aria-hidden="true"] {
+    transition: 0.1s filter;
+    filter: blur(10px);
+}
+
+/*sweetalert2*/
+
 .centered {
     position: fixed;
     top: 50%;

@@ -2,7 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import SectionTitle from '../section-title';
 import Isotope from 'isotope-layout';
 import ImagesLoaded from 'imagesloaded';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { portfolio } from '../../constants';
+import PortfolioCard, { PortfolioCardProps } from './card';
+
+const SwalModal = withReactContent(Swal);
 
 const Portfolio = () => {
   const [activeItem, setActiveItem] = useState('*');
@@ -47,6 +52,15 @@ const Portfolio = () => {
     (item: string) => (item === activeItem ? 'active' : ''),
     [activeItem]
   );
+
+  const showModal = useCallback((data: PortfolioCardProps) => {
+    SwalModal.fire({
+      title: data.title,
+      width: '70%',
+      html: <PortfolioCard key={data.title} {...data} />,
+      showConfirmButton: false,
+    });
+  }, []);
 
   return (
     <section className={`portfolio_area`} id="portfolio">
@@ -98,6 +112,14 @@ const Portfolio = () => {
               Mobile
             </li>
             <li
+              className={onActive(`typescript`)}
+              data-wow-delay="0.6s"
+              data-filter="typescript"
+              onClick={() => onFilterChange('typescript')}
+            >
+              Typescript
+            </li>
+            <li
               className={onActive(`oss`)}
               data-wow-delay="0.8s"
               data-filter="oss"
@@ -121,7 +143,7 @@ const Portfolio = () => {
                     <div className="overlay-info text-center">
                       <h6 className="sm-titl">{item.title}</h6>
                       <div className="icons">
-                        <a href=".#">
+                        <a onClick={() => showModal(item)}>
                           <i className="icon-magnifying-glass"></i>
                         </a>
                       </div>

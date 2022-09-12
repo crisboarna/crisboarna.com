@@ -1,5 +1,6 @@
 import React from 'react';
 import Sticky from 'react-stickynode';
+import { NavLink } from 'react-router-dom';
 import { Link } from 'react-scroll';
 import Logo from '../../assets/images/logo60.png';
 import Logo2 from '../../assets/images/logo260.png';
@@ -115,12 +116,9 @@ const Header = () => {
             </ul>
             <ul className="nav navbar-nav navbar-right d-lg-block">
               <li className="nav-item">
-                <a
-                  href="https://cv.crisboarna.com"
-                  className="header_theme_btn"
-                >
+                <NavLink to={'/cv'} className={'header_theme_btn'}>
                   CV
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>

@@ -3,6 +3,7 @@ import * as ReactDOMClient from 'react-dom/client';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'jquery/dist/jquery.min.js';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import 'sweetalert2/src/sweetalert2.scss';
 
 import App from './app';
 
