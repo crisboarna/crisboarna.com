@@ -9,16 +9,18 @@ interface FormState {
   values: ApiTypes.ContactRequestPayload;
 }
 
+const defaultErrorsState = {
+  name: '',
+  subject: '',
+  email: 'test',
+  message: '',
+  submit: '',
+};
+
 const Form = () => {
   const [state, setState] = useState<FormState>({
     submitted: false,
-    errors: {
-      name: '',
-      subject: '',
-      email: '',
-      message: '',
-      submit: '',
-    },
+    errors: defaultErrorsState,
     values: {
       name: '',
       subject: '',
@@ -79,7 +81,7 @@ const Form = () => {
     if (error) {
       setState({ ...state, errors, submitted: true });
     } else {
-      setState({ ...state, submitted: true });
+      setState({ ...state, errors: defaultErrorsState, submitted: true });
       executePost({ data: state.values })
         .then((res) => console.log(res))
         .catch((error) => {
@@ -105,7 +107,9 @@ const Form = () => {
             type="text"
             id="name"
             name="name"
-            className="form-control"
+            className={`form-control ${
+              state.submitted && errors.name !== '' ? 'is-invalid' : ''
+            }`}
             placeholder="Name"
             onChange={handleChange}
             required={true}
@@ -116,14 +120,16 @@ const Form = () => {
           <label htmlFor="email">Email*</label>
           <input
             type="email"
-            className="form-control"
+            className={`form-control ${
+              state.submitted && errors.email !== '' ? 'is-invalid' : ''
+            }`}
             id="email"
             name="email"
             placeholder="Email"
             onChange={handleChange}
             required={true}
           />
-          <div className="invalid-feedback">{errors.email}</div>
+          <div className={'invalid-feedback'}>{errors.email}</div>
         </div>
         <div className="form-group col-lg-12">
           <label htmlFor="subject">Subject*</label>
@@ -131,7 +137,9 @@ const Form = () => {
             type="text"
             id="subject"
             name="subject"
-            className="form-control"
+            className={`form-control ${
+              state.submitted && errors.subject !== '' ? 'is-invalid' : ''
+            }`}
             placeholder="Subject"
             onChange={handleChange}
             required={true}
@@ -145,7 +153,9 @@ const Form = () => {
           <textarea
             name="message"
             id="message"
-            className="form-control"
+            className={`form-control ${
+              state.submitted && errors.message !== '' ? 'is-invalid' : ''
+            }`}
             rows={6}
             placeholder="Message..."
             onChange={handleChange}

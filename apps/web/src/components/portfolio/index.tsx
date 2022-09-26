@@ -68,7 +68,7 @@ const Portfolio = () => {
       <div className="container">
         <SectionTitle
           title="My Portfolio"
-          description="From my repertoire of completed projects."
+          description="From my repertoire of projects."
         />
         <div>
           <ul className="list_style portfolio_menu text-center">
@@ -139,7 +139,13 @@ const Portfolio = () => {
                 )}`}
               >
                 <div className="portfolio hover-style">
-                  <img src={item.image} alt={item.imageAlt} />
+                  <div className={'img-test'}>
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt}
+                      className={'portfolio-card-root-img'}
+                    />
+                  </div>
                   <div className="item-img-overlay">
                     <div className="overlay-info text-center">
                       <h6 className="sm-titl">{item.title}</h6>

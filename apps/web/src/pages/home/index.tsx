@@ -34,9 +34,9 @@ const Home = () => {
         <React.Fragment>
           <Services />
           <Tools />
-          <Portfolio />
-          <Counters />
           <Certifications />
+          <Counters />
+          <Portfolio />
           <Blog />
           <Contact />
           <Footer />

@@ -5,13 +5,17 @@ import AWS from './assets/images/awards/aws.png';
 import K8 from './assets/images/awards/k8.png';
 import R3 from './assets/images/awards/r3.png';
 import Post from './assets/images/blog/post.jpg';
-import AmazonWebServicesLogo from './assets/images/portofolio/amazon-web-services-logo.png';
-import Img1 from './assets/images/portofolio/1.jpg';
-import Img2 from './assets/images/portofolio/2.jpg';
-import Img3 from './assets/images/portofolio/3.jpg';
-import Img4 from './assets/images/portofolio/4.jpg';
-import Img9 from './assets/images/portofolio/9.jpg';
-import Img10 from './assets/images/portofolio/10.jpg';
+import AWSLogo from './assets/images/portofolio/aws-logo.png';
+import KubernetesLogo from './assets/images/portofolio/kubernetes-logo.png';
+import InnerILogo from './assets/images/portofolio/inneri-logo.png';
+import CoachCoreLogo from './assets/images/portofolio/coachcore-logo.png';
+import CollinsonLogo from './assets/images/portofolio/collinson-logo.png';
+import KortexoLogo from './assets/images/portofolio/kortexo-logo.png';
+import FlutterLogo from './assets/images/portofolio/flutter-logo.png';
+import LGLogo from './assets/images/portofolio/lg-logo.png';
+import VcpkgLogo from './assets/images/portofolio/vcpkg-logo.svg';
+import VdLogo from './assets/images/portofolio/vd-logo.svg';
+import WellLogo from './assets/images/portofolio/well-logo.png';
 
 export interface ConstContactProps {
   readonly id: number;
@@ -63,7 +67,7 @@ export const ICONS: { [key: string]: ReactElement } = {
 
 export const counters = [
   { id: 1, value: 54, description: 'Total Projects', icon: 'briefcase' },
-  { id: 2, value: 32, description: 'Happy Clients', icon: 'happy' },
+  { id: 2, value: 22, description: 'Happy Clients', icon: 'happy' },
   { id: 3, value: 10, description: 'Years of Experience', icon: 'calendar' },
   { id: 4, value: 5, description: 'Certifications', icon: 'trophy' },
 ];
@@ -74,36 +78,36 @@ export const portfolio = [
     subtitle: 'Contributor',
     categories: ['oss', 'go'],
     tech: ['Golang', 'Prometheus', 'IP Protocol', 'make'],
-    image: Img1,
+    image: KubernetesLogo,
     imageAlt: 'CNCF Kubernetes Open Source',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: 'Participated in the development of the Networking SIG TCP IPv4/v6 network stack and net probe testing by providing fixes that helped clean up the IPv4/IPv6 network stack used in the agent communication with the pods and provided stability fixes for Windows test suite.',
   },
   {
     title: 'Flutter',
     subtitle: 'Contributor',
     categories: ['oss', 'mobile'],
     tech: ['Dart', 'IP Networking', 'LUCI'],
-    image: Img2,
+    image: FlutterLogo,
     imageAlt: 'Google Flutter Open Source',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: "Helped in further expanding Google's Flutter framework by developing a network uptime checker in Flutter doctor utility.",
   },
   {
     title: 'AWS CDK',
     subtitle: 'Contributor',
     categories: ['oss', 'typescript'],
     tech: ['Typescript', 'AWS Cloudformation'],
-    image: Img2,
+    image: AWSLogo,
     imageAlt: 'AWS CDK Open Source',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: 'Expanded the managed Kafka service module by exposing the SAML-SCRAM authorisation endpoint in user realm. Created utility library that enforces best practices and shortens the development cycle while using AWS CDK.',
   },
   {
     title: 'vcpkg',
     subtitle: 'Contributor',
     categories: ['oss', 'cpp'],
     tech: ['C++', 'cmake', 'make'],
-    image: Img10,
+    image: VcpkgLogo,
     imageAlt: 'Microsoft VCPKG Open Source',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: 'Expanded the WebRTC related ports with updates and fixes keeping them up to date with upstream.',
   },
   {
     title: 'Well Portal',
@@ -117,9 +121,9 @@ export const portfolio = [
       'MySQL',
       'GatsbyJS',
     ],
-    image: Img3,
+    image: WellLogo,
     imageAlt: 'Well Logo',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: 'Developed new customer facing ReactJS application for digital and OTC customers.',
   },
   {
     title: 'Well ETL BI',
@@ -133,27 +137,27 @@ export const portfolio = [
       'AWS Glue',
       'PostgreSQL',
     ],
-    image: Img3,
+    image: WellLogo,
     imageAlt: 'Well Logo',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: 'Created an ETL pipeline leveraging AWS glue (Apache Spark), AWS Kinesis, Athena and Quicksight to provide realtime business information on customer activity for stock management and further downstream features.',
   },
   {
     title: 'CoachCore Admin Portal',
     subtitle: 'Lead Developer',
     categories: ['web', 'typescript'],
     tech: ['ReactJS', 'Typescript', 'AWS Lambda', 'AWS DynamoDB', 'AWS SNS'],
-    image: Img4,
+    image: CoachCoreLogo,
     imageAlt: 'CoachCore Logo',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: "Created full-stack application for the digitalisation of the foundation's partner administrative process through serverless ReactJS and Lambda.",
   },
   {
     title: 'LG NextTV PoC',
     subtitle: 'FullStack Developer',
     categories: ['cpp'],
     tech: ['C++', 'WebRTC', 'Electron', 'cmake', 'Docker', 'AWS CDK'],
-    image: Img4,
+    image: LGLogo,
     imageAlt: 'LG Logo',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: 'Created a WebRTC communication layer for an internal conferencing product. Built a viewer application using Electron.',
   },
   {
     title: 'Collinson SmartPay',
@@ -169,27 +173,27 @@ export const portfolio = [
       'AWS Lambda',
       'Docker',
     ],
-    image: Img9,
+    image: CollinsonLogo,
     imageAlt: 'Collinson Logo',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: 'Led team developing new smart offering system for marketplace products interfacing with multiple brand point banks in carrying their total asset worth.',
   },
   {
-    title: 'Collinson DOM',
+    title: 'VDX Direct Offers Marketplace',
     subtitle: 'FullStack Developer',
     categories: ['typescript'],
     tech: ['Typescript', 'Kafka', 'MySQL', 'Redis', 'Cloudfront', 'AWS Lambda'],
-    image: Img9,
+    image: VdLogo,
     imageAlt: 'Collinson Logo',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: 'Developed middleware that cashed product offers from multiple aggregators and presented them via an uniform API layer to subscribing customers that resulted in higher ROI for each individual partner.',
   },
   {
     title: 'Kortexo',
     subtitle: 'Personal Project',
     categories: ['mobile'],
     tech: ['Flutter', 'Dart', 'ReactJS', 'Typescript', 'Firebase', 'Lambda'],
-    image: Img9,
+    image: KortexoLogo,
     imageAlt: 'Kortexo Logo',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: 'Built a full-stack educational platform with a mobile app for users to subscribe and train on courses provided by partnering publishers.',
   },
   {
     title: 'InnerI',
@@ -203,9 +207,9 @@ export const portfolio = [
       'Cloud Functions',
       'Fastlane',
     ],
-    image: Img9,
+    image: InnerILogo,
     imageAlt: 'Flutter Logo',
-    body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: "Built a full-stack serverless mobile app leveraging Google's Flutter framework for users to help track their feelings and improve their mental health.",
   },
 ];
 
@@ -215,7 +219,7 @@ export const services = [
     iconName: 'icon-cloud',
     serviceTitle: 'Cloud',
     sDetails:
-      'I architect, develop & deploy apps that are scalable & resilient for global audiences on AWS, Azure & Firebase',
+      'I architect, develop & deploy apps that are scalable & resilient for global audiences on AWS, Azure & Firebase.',
   },
   {
     id: 2,
@@ -229,7 +233,7 @@ export const services = [
     iconName: 'icon-mobile',
     serviceTitle: 'Mobile',
     sDetails:
-      'I create beautiful cross-platform native mobile apps enriching your users experience with your products.',
+      "I create beautiful cross-platform native mobile apps enriching the user's experience with your products.",
   },
   {
     id: 4,

@@ -10,7 +10,7 @@ const Services = () => (
       <SectionTitle
         title={'About Me'}
         description={
-          'I love and am passionate of my craft. I take great pride in what I do.'
+          'I am passionate of my craft. I take great pride in what I do.'
         }
       />
       <Reveal

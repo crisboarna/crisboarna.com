@@ -84,19 +84,6 @@ const Header = () => {
                 <Link
                   className="nav-link"
                   activeClass="active"
-                  to={isCV ? '/#portfolio' : 'portfolio'}
-                  spy={true}
-                  smooth={true}
-                  offset={-86}
-                  duration={500}
-                >
-                  Portfolio
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  activeClass="active"
                   to={isCV ? '/#certifications' : 'certifications'}
                   spy={true}
                   smooth={true}
@@ -104,6 +91,19 @@ const Header = () => {
                   duration={500}
                 >
                   Certifications
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  activeClass="active"
+                  to={isCV ? '/#portfolio' : 'portfolio'}
+                  spy={true}
+                  smooth={true}
+                  offset={-86}
+                  duration={500}
+                >
+                  Portfolio
                 </Link>
               </li>
               <li className="nav-item">
