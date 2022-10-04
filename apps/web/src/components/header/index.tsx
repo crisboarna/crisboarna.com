@@ -106,19 +106,19 @@ const Header = () => {
                   Portfolio
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  activeClass="active"
-                  to={isCV ? '/#blog' : 'blog'}
-                  spy={true}
-                  smooth={true}
-                  offset={-86}
-                  duration={500}
-                >
-                  Blog
-                </Link>
-              </li>
+              {/*<li className="nav-item">*/}
+              {/*  <Link*/}
+              {/*    className="nav-link"*/}
+              {/*    activeClass="active"*/}
+              {/*    to={isCV ? '/#blog' : 'blog'}*/}
+              {/*    spy={true}*/}
+              {/*    smooth={true}*/}
+              {/*    offset={-86}*/}
+              {/*    duration={500}*/}
+              {/*  >*/}
+              {/*    Blog*/}
+              {/*  </Link>*/}
+              {/*</li>*/}
               <li className="nav-item">
                 <Link
                   className="nav-link"
