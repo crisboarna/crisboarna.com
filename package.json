@@ -52,7 +52,7 @@
     "react-dom": "18.0.0",
     "react-error-boundary": "^3.1.4",
     "react-iframe": "^1.8.0",
-    "react-lazy-load-image-component": "^1.5.5",
+    "react-lazy-load-image-component": "^1.5.6",
     "react-lottie": "^1.2.3",
     "react-router-dom": "^6.3.0",
     "react-scroll": "^1.8.7",

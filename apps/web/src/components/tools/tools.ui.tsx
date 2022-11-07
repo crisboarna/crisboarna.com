@@ -16,13 +16,12 @@ const Tools = ({ tools }: ToolsProps) => (
             href={tool.url}
             className={`c_items${idx === 3 ? ' middle' : ''}`}
           >
-            <img src={tool.image} alt={tool.name} />
-            {/*<LazyLoadImage*/}
-            {/*  key={idx}*/}
-            {/*  src={tool.image}*/}
-            {/*  alt={tool.name}*/}
-            {/*  effect={'blur'}*/}
-            {/*/>*/}
+            <LazyLoadImage
+              key={idx}
+              src={tool.image}
+              alt={tool.name}
+              effect={'blur'}
+            />
           </a>
         ))}
       </div>

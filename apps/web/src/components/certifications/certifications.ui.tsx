@@ -17,13 +17,12 @@ const Certifications = ({
   onNavigate,
 }: CertificationsUIProps) => (
   <section className="awards_area bg_color_two sec_pad" id={'certifications'}>
-    <img src={Background} alt={'background'} className={'shape one'} />
-    {/*<LazyLoadImage*/}
-    {/*  className={'shape one'}*/}
-    {/*  src={Background}*/}
-    {/*  alt={'Background'}*/}
-    {/*  effect={'blur'}*/}
-    {/*/>*/}
+    <LazyLoadImage
+      className={'shape one'}
+      src={Background}
+      alt={'Background'}
+      effect={'blur'}
+    />
     <div className="container">
       <SectionTitle
         title={'Certifications'}

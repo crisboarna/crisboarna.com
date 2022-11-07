@@ -8,8 +8,7 @@ const Certification: VFC<
   <div key={title} onClick={() => onNavigate(url)}>
     <div className="awards_item wow fadeInUp">
       <div className="icon">
-        <img src={image} alt={imageAlt} />
-        {/*<LazyLoadImage src={image} alt={imageAlt} effect={'blur'} />*/}
+        <LazyLoadImage src={image} alt={imageAlt} effect={'blur'} />
       </div>
       <h4>{title}</h4>
       <p>{description}</p>
