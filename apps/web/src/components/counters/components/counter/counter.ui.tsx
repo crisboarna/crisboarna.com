@@ -1,12 +1,7 @@
 import React, { VFC } from 'react';
+import { ICounter } from '../../index';
 
-export interface CounterProps {
-  readonly value: number;
-  readonly description: string;
-  readonly icon: string;
-}
-
-const Counter: VFC<CounterProps> = ({ value, description, icon }) => (
+const Counter: VFC<ICounter> = ({ value, description, icon }) => (
   <div className={`col-md-3 col-sm-6`}>
     <div
       className="counter_item text-center wow fadeInUp"

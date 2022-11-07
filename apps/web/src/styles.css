@@ -17,7 +17,12 @@ body.swal2-shown > [aria-hidden="true"] {
 
 /*cv spacing*/
 .cv-spacing {
-    padding-top: 5.5rem;
+    background: #f5f5f5;
+    padding-top: 6rem;
+    padding-right: 9rem;
+}
+
+.cv-container {
     height: 100vh;
 }
 
@@ -390,6 +395,60 @@ h6 {
         color: #000;
         border: 2px solid #000;
     }
+}
+
+/*============ animated_theme_btn css =========*/
+.animated_theme_btn {
+    font-size: 20px;
+    font-weight: 500;
+    color: #040c2c;
+    font-family: "Montserrat", sans-serif;
+    border: 2px solid #040c2c;
+    padding: 1px 4px;
+    border-radius: 3px;
+    position: relative;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 1;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    min-width: 100px;
+    text-align: center;
+    display: inline-block;
+}
+
+.animated_theme_btn:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    transform: scaleX(0);
+    border-radius: 1px;
+    background: #040c2c;
+    -webkit-transform-origin: 50%;
+    -ms-transform-origin: 50%;
+    transform-origin: 50%;
+    transition-property: -webkit-transform;
+    -webkit-transition-property: -webkit-transform;
+    -o-transition-property: transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    transition: all 0.3s linear;
+}
+
+.animated_theme_btn:hover {
+    color: #fff;
+}
+
+.animated_theme_btn:hover:before {
+    -webkit-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    transform: scaleX(1);
 }
 
 /*---------------------------------------------------- */

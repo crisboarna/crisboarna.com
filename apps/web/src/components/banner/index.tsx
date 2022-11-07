@@ -41,7 +41,7 @@ const Banner: VFC<BannerProps> = ({ onReady }) => {
       {!loaded && <Loading />}
       <section
         className="frelencer_banner_area"
-        id="banner"
+        id="home"
         style={{ display: loaded ? 'flex' : 'none' }}
       >
         <div className="home_bubble">
