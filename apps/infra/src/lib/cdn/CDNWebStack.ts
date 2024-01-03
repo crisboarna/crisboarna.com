@@ -79,20 +79,20 @@ export class CDNWebStack extends Stack {
       domainCertArn
     );
 
-    const wafv2 = new CfnWebACL(this, `${projectName}-WAF-${stackEnv}`, {
-      name: `${projectName}-WAF-Web-${stackEnv}`,
-      description: `WAF for ${projectName} Web ${stackEnv}`,
-      scope: 'CLOUDFRONT',
-      defaultAction: {
-        allow: {},
-      },
-      visibilityConfig: {
-        cloudWatchMetricsEnabled: true,
-        metricName: `${projectName.toLowerCase()}-waf-access-web-${stackEnv.toLowerCase()}`,
-        sampledRequestsEnabled: true,
-      },
-      rules: wafRules(projectName, stackEnv, 'web'),
-    });
+    // const wafv2 = new CfnWebACL(this, `${projectName}-WAF-${stackEnv}`, {
+    //   name: `${projectName}-WAF-Web-${stackEnv}`,
+    //   description: `WAF for ${projectName} Web ${stackEnv}`,
+    //   scope: 'CLOUDFRONT',
+    //   defaultAction: {
+    //     allow: {},
+    //   },
+    //   visibilityConfig: {
+    //     cloudWatchMetricsEnabled: true,
+    //     metricName: `${projectName.toLowerCase()}-waf-access-web-${stackEnv.toLowerCase()}`,
+    //     sampledRequestsEnabled: true,
+    //   },
+    //   rules: wafRules(projectName, stackEnv, 'web'),
+    // });
 
     let lambdaAuthCdn: IVersion | undefined;
 
@@ -185,7 +185,7 @@ export class CDNWebStack extends Stack {
       `${projectName}-CDN-Web-${stackEnv}`,
       {
         comment: `${projectName}WEB${stackEnv}`,
-        webAclId: wafv2.attrArn,
+        // webAclId: wafv2.attrArn,
         enabled: true,
         httpVersion: HttpVersion.HTTP2,
         certificate,

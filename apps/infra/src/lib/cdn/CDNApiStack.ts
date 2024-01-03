@@ -64,20 +64,20 @@ export class CDNApiStack extends Stack {
       domainCertArn
     );
 
-    const wafv2 = new CfnWebACL(this, `${projectName}-WAF-${stackEnv}`, {
-      name: `${projectName}-WAF-Api-${stackEnv}`,
-      description: `WAF for ${projectName} API ${stackEnv}`,
-      scope: 'CLOUDFRONT',
-      defaultAction: {
-        allow: {},
-      },
-      visibilityConfig: {
-        cloudWatchMetricsEnabled: true,
-        metricName: `${projectName.toLowerCase()}-waf-access-api-${stackEnv.toLowerCase()}`,
-        sampledRequestsEnabled: true,
-      },
-      rules: wafRules(projectName, stackEnv, 'api'),
-    });
+    // const wafv2 = new CfnWebACL(this, `${projectName}-WAF-${stackEnv}`, {
+    //   name: `${projectName}-WAF-Api-${stackEnv}`,
+    //   description: `WAF for ${projectName} API ${stackEnv}`,
+    //   scope: 'CLOUDFRONT',
+    //   defaultAction: {
+    //     allow: {},
+    //   },
+    //   visibilityConfig: {
+    //     cloudWatchMetricsEnabled: true,
+    //     metricName: `${projectName.toLowerCase()}-waf-access-api-${stackEnv.toLowerCase()}`,
+    //     sampledRequestsEnabled: true,
+    //   },
+    //   rules: wafRules(projectName, stackEnv, 'api'),
+    // });
 
     let lambdaAuthCdn: IVersion | undefined;
 
@@ -101,7 +101,7 @@ export class CDNApiStack extends Stack {
       `${projectName}-CDN-API-${stackEnv}`,
       {
         comment: `${projectName}API${stackEnv}`,
-        webAclId: wafv2.attrArn,
+        // webAclId: wafv2.attrArn,
         enabled: true,
         httpVersion: HttpVersion.HTTP2,
         certificate,

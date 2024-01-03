@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+#  paths:
+#    - 'apps/api/**/*'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.ref != 'refs/head/master/' || github.run_number }}
