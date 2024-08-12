@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import { App } from 'aws-cdk-lib';
 import {
-  lambdaApiAuthCdn,
-  lambdaApiAuthGateway,
+  lambdaAuthCdn,
+  lambdaAuthGateway,
   lambdaApiMain,
+  lambdaApiChat,
 } from '../config/lambda';
 import { CDKDirectoryUtil, LambdaUtilStack } from 'aws-cdk-lib-util';
 import { APIConstants } from '@crisboarna.com/common-api';
@@ -25,23 +26,33 @@ new LambdaUtilStack(app, `${lambdaApiMain.name}-${STACK_ENV}`, {
   stackEnv: STACK_ENV,
 });
 
-new LambdaUtilStack(app, `${lambdaApiAuthGateway.name}-${STACK_ENV}`, {
+new LambdaUtilStack(app, `${lambdaApiChat.name}-${STACK_ENV}`, {
   env: {
     account: process.env.AWS_CDK_ACCOUNT,
     region: process.env.AWS_CDK_REGION,
   },
-  lambda: lambdaApiAuthGateway,
+  lambda: lambdaApiChat,
+  projectName: APIConstants.PROJECT_NAME,
+  stackEnv: STACK_ENV,
+});
+
+new LambdaUtilStack(app, `${lambdaAuthGateway.name}-${STACK_ENV}`, {
+  env: {
+    account: process.env.AWS_CDK_ACCOUNT,
+    region: process.env.AWS_CDK_REGION,
+  },
+  lambda: lambdaAuthGateway,
   projectName: APIConstants.PROJECT_NAME,
   stackEnv: STACK_ENV,
 });
 
 if (STACK_ENV !== ENV.PROD) {
-  new LambdaUtilStack(app, `${lambdaApiAuthCdn.name}-${STACK_ENV}`, {
+  new LambdaUtilStack(app, `${lambdaAuthCdn.name}-${STACK_ENV}`, {
     env: {
       account: process.env.AWS_CDK_ACCOUNT,
       region: 'us-east-1',
     },
-    lambda: lambdaApiAuthCdn,
+    lambda: lambdaAuthCdn,
     projectName: APIConstants.PROJECT_NAME,
     stackEnv: STACK_ENV,
   });

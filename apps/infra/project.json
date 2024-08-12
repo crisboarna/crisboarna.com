@@ -4,7 +4,7 @@
   "projectType": "application",
   "targets": {
     "diagram:cdn": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' > diagrams/template.yaml",
@@ -14,7 +14,7 @@
       }
     },
     "diagram:api": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts' > diagrams/template.yaml",
@@ -24,7 +24,7 @@
       }
     },
     "diagram:lambda": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts' > diagrams/template.yaml",
@@ -34,7 +34,7 @@
       }
     },
     "diagram:monitoring-wrapper": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts' > diagrams/template.yaml",
@@ -44,7 +44,7 @@
       }
     },
     "diagram:monitoring-base": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts' > diagrams/template.yaml",
@@ -54,7 +54,7 @@
       }
     },
     "diagram:acm": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts' > diagrams/template.yaml",
@@ -64,7 +64,7 @@
       }
     },
     "diagram:ci": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk synth -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts' > diagrams/template.yaml",
@@ -74,7 +74,7 @@
       }
     },
     "deploy:cdn": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' --all"
@@ -82,7 +82,7 @@
       }
     },
     "deploy:cdn:api": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' CRISBOARNA-CDN-Api-${ENV}"
@@ -91,7 +91,7 @@
       }
     },
     "deploy:cdn:web": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "nx build web",
@@ -102,7 +102,7 @@
       }
     },
     "deploy:api": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts'"
@@ -110,17 +110,17 @@
       }
     },
     "deploy:lambda": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "nx run-many --target=build --projects=api-main,api-auth-cdn,api-auth-gateway",
+          "nx run-many --target=build --projects=api-main,api-chat,auth-cdn,auth-gateway",
           "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts' --all"
         ],
         "parallel": false
       }
     },
     "deploy:monitoring-wrapper": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts'"
@@ -128,7 +128,7 @@
       }
     },
     "deploy:monitoring-base": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts'"
@@ -136,7 +136,7 @@
       }
     },
     "deploy:acm": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts'"
@@ -144,52 +144,128 @@
       }
     },
     "deploy:ci": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cdk deploy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts'"
         ]
       }
     },
+    "destroy:cdn": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cdk destroy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' --all"
+        ]
+      }
+    },
+    "destroy:cdn:api": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cdk destroy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' CRISBOARNA-CDN-Api-${ENV}"
+        ],
+        "envFile": ".env"
+      }
+    },
+    "destroy:cdn:web": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cdk destroy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' CRISBOARNA-CDN-Web-${ENV}"
+        ],
+        "parallel": false,
+        "envFile": ".env"
+      }
+    },
+    "destroy:api": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cdk destroy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts'"
+        ]
+      }
+    },
+    "destroy:lambda": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cdk destroy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts' --all"
+        ],
+        "parallel": false
+      }
+    },
+    "destroy:monitoring-wrapper": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cdk destroy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts'"
+        ]
+      }
+    },
+    "destroy:monitoring-base": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cdk destroy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts'"
+        ]
+      }
+    },
+    "destroy:acm": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cdk destroy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts'"
+        ]
+      }
+    },
+    "destroy:ci": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cdk destroy --require-approval never -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts'"
+        ]
+      }
+    },
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "nx lint-ts infra",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts'"
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts' --output apps/infra/cdk.out/ci",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts' --output apps/infra/cdk.out/acm",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts' --output apps/infra/cdk.out/mointoring-base",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts' --output apps/infra/cdk.out/lambda",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts' --output apps/infra/cdk.out/api",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' --output apps/infra/cdk.out/cdn",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts' --output apps/infra/cdk.out/monitoring-wrapper"
         ]
       }
     },
     "lint": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "nx lint-ts infra",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts'",
-          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts'"
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CI.ts' --output apps/infra/cdk.out/ci",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/ACM.ts' --output apps/infra/cdk.out/acm",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Base.ts' --output apps/infra/cdk.out/monitoring-base",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Lambda.ts' --output apps/infra/cdk.out/lambda",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/API.ts' --output apps/infra/cdk.out/api",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/CDN.ts' --output apps/infra/cdk.out/cdn",
+          "cdk synth -q -a 'npx ts-node --prefer-ts-exts -P apps/infra/tsconfig.app.json -r tsconfig-paths/register -r dotenv/config apps/infra/src/bin/Monitoring-Wrapper.ts' --output apps/infra/cdk.out/monitoring-wrapper"
         ]
       }
     },
     "lint-ts": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/infra/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["coverage/apps/infra"],
       "options": {
         "jestConfig": "apps/infra/jest.config.js",

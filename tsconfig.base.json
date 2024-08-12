@@ -10,15 +10,14 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@crisboarna.com/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@crisboarna.com/common-api": ["libs/common-api/src/index.ts"],
       "@crisboarna.com/types": ["libs/types/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp", "cdk.out"]
+  "exclude": ["node_modules", "tmp"]
 }

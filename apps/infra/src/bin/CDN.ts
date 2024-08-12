@@ -18,6 +18,8 @@ const ENV = process.env[APIConstants.ENV];
 
 const artifactPathWeb = path.resolve(__dirname, '../../../../dist/apps/web');
 CDKDirectoryUtil.checkArtifactDirectoryExists(artifactPathWeb);
+const artifactPathWebAuth = path.resolve(__dirname, '../../../../dist/apps/auth/cdn');
+CDKDirectoryUtil.checkArtifactDirectoryExists(artifactPathWebAuth);
 
 new CDNWebStack(
   app,
@@ -31,6 +33,7 @@ new CDNWebStack(
       region: 'us-east-1',
     },
     artifactPathWeb,
+    artifactPathWebAuth,
     cdnParamNameWeb: PARAM_CDN_ID_WEB,
     domainName: process.env.AWS_CDK_DOMAIN_NAME,
     domainCertParamName: PARAM_ACM_DOMAIN_ARN_CF,

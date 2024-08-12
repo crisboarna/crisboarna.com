@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faTwitter, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import AWS from './assets/images/awards/aws.png';
 import K8 from './assets/images/awards/k8.png';
 import R3 from './assets/images/awards/r3.png';
@@ -38,43 +39,31 @@ export interface ConstContactProps {
 }
 
 export const API_URL =
-  process.env['NX_API_URL'] || 'https://api.crisboarna.com';
-export const CV_URL = process.env['NX_CV_URL'] || 'https://cv.crisboarna.com';
+  import.meta.env.VITE_API_URL|| 'https://api.crisboarna.com';
+export const CV_URL = import.meta.env.VITE_CV_URL || 'https://cv.crisboarna.com';
 
 export const ICONS: { [key: string]: ReactElement } = {
   github: (
     <FontAwesomeIcon
-      icon={icon({
-        style: 'brands',
-        name: 'github',
-      })}
+      icon={faGithub}
       className={'icon'}
     />
   ),
   linkedin: (
     <FontAwesomeIcon
-      icon={icon({
-        style: 'brands',
-        name: 'linkedin',
-      })}
+      icon={faLinkedin}
       className={'icon'}
     />
   ),
   twitter: (
     <FontAwesomeIcon
-      icon={icon({
-        style: 'brands',
-        name: 'twitter',
-      })}
+      icon={faTwitter}
       className={'icon'}
     />
   ),
   envelope: (
     <FontAwesomeIcon
-      icon={icon({
-        style: 'regular',
-        name: 'envelope',
-      })}
+      icon={faEnvelope}
       className={'icon'}
     />
   ),

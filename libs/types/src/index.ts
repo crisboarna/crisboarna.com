@@ -1,4 +1,4 @@
-import * as ApiTypes from './lib/api';
+import * as ApiTypes from './lib';
 
 export { ApiTypes };
 

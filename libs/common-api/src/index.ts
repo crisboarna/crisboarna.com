@@ -1,3 +1,3 @@
-import * as APIConstants from './lib/infra';
+import * as APIConstants from './lib';
 
 export { APIConstants };

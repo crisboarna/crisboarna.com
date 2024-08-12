@@ -26,6 +26,7 @@ import {
 import {
   Effect,
   ManagedPolicy,
+  PolicyDocument,
   PolicyStatement,
   Role,
   ServicePrincipal,
@@ -42,8 +43,9 @@ import {
   Runtime,
   Version,
 } from 'aws-cdk-lib/aws-lambda';
-import { EdgeFunction } from 'aws-cdk-lib/aws-cloudfront/lib/experimental';
+import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
+import { getApiIAMPolicies } from '../lambda/util';
 
 /**
  * Stack creating the Cloudfront Distribution, WAF, R53 mapping that fronts API GW
@@ -53,7 +55,9 @@ export class CDNWebStack extends Stack {
     super(scope, id, props);
 
     const {
+      env,
       artifactPathWeb,
+      artifactPathWebAuth,
       cdnParamNameWeb,
       domainCertParamName,
       domainName,
@@ -97,43 +101,63 @@ export class CDNWebStack extends Stack {
     let lambdaAuthCdn: IVersion | undefined;
 
     if (stackEnv !== ENV.PROD) {
-      const lambdaAuthCdnArn = <string>SSMUtil.getSSMParameter({
-        scope: this,
-        projectName,
-        stackEnv,
-        paramName: PARAM_LAMBDA_API_AUTH_CDN_VERSION_ARN,
-        extract: true,
-      });
-      lambdaAuthCdn = Version.fromVersionArn(
-        this,
-        `${projectName}-CDN-Lambda-Edge-${stackEnv}`,
-        lambdaAuthCdnArn
-      );
-      // lambdaAuthCdn = new EdgeFunction(
-      //     this,
-      //     `${projectName}-CDN-Auth-${stackEnv}`,
-      //     {
-      //         functionName: `${projectName}-CF-Edge-Auth-${stackEnv}`,
-      //         code: Code.fromAsset(artifactPathWeb),
-      //         runtime: Runtime.NODEJS_16_X,
-      //         handler: 'main.handler',
-      //         retryAttempts: 0,
-      //         memorySize: 128,
-      //         logRetention: RetentionDays.ONE_DAY,
-      //         architecture: Architecture.X86_64,
-      //         currentVersionOptions: { removalPolicy: RemovalPolicy.DESTROY },
-      //         role: new Role(this, `${projectName}-CDN-Auth-Role-${stackEnv}`, {
-      //             roleName: `${projectName}-CDN-Auth-Role-${stackEnv}`,
-      //             description: `Role used for CDN Viewer Request Auth Lambda ${stackEnv}`,
-      //             assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
-      //             managedPolicies: [
-      //                 ManagedPolicy.fromAwsManagedPolicyName(
-      //                     'service-role/AWSLambdaBasicExecutionRole'
-      //                 ),
-      //             ],
-      //         }),
-      //     }
+      // const lambdaAuthCdnArn = <string>SSMUtil.getSSMParameter({
+      //   scope: this,
+      //   projectName,
+      //   stackEnv,
+      //   paramName: PARAM_LAMBDA_API_AUTH_CDN_VERSION_ARN,
+      //   extract: true,
+      // });
+      // lambdaAuthCdn = Version.fromVersionArn(
+      //   this,
+      //   `${projectName}-CDN-Lambda-Edge-${stackEnv}`,
+      //   lambdaAuthCdnArn
       // );
+
+      const lambdaAuthEdgeRole = new Role(
+        this,
+        `${projectName}-CDN-Auth-Role-${stackEnv}`,
+        {
+          roleName: `${projectName}-CDN-Auth-Role-${stackEnv}`,
+          description: `Role used for CDN Viewer Request Auth Lambda ${stackEnv}`,
+          assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+          managedPolicies: [
+            ManagedPolicy.fromAwsManagedPolicyName(
+              'service-role/AWSLambdaBasicExecutionRole'
+            ),
+          ],
+          inlinePolicies: {
+            Policies: new PolicyDocument({
+              statements: getApiIAMPolicies('cdn')(env, projectName, stackEnv),
+            }),
+          },
+        }
+      );
+
+      lambdaAuthEdgeRole.assumeRolePolicy.addStatements(
+        new PolicyStatement({
+          principals: [new ServicePrincipal('edgelambda.amazonaws.com')],
+          actions: ['sts:AssumeRole'],
+          effect: Effect.ALLOW,
+        })
+      );
+
+      lambdaAuthCdn = new cloudfront.experimental.EdgeFunction(
+        this,
+        `${projectName}-CDN-Auth-${stackEnv}`,
+        {
+          functionName: `${projectName}-CF-Edge-Auth-${stackEnv}`,
+          code: Code.fromAsset(artifactPathWebAuth),
+          runtime: Runtime.NODEJS_20_X,
+          handler: 'main.handler',
+          retryAttempts: 0,
+          memorySize: 128,
+          logRetention: RetentionDays.ONE_DAY,
+          architecture: Architecture.X86_64,
+          currentVersionOptions: { removalPolicy: RemovalPolicy.DESTROY },
+          role: lambdaAuthEdgeRole,
+        }
+      );
     }
 
     const originAccessIdentity = new OriginAccessIdentity(

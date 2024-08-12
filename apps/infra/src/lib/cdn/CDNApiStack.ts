@@ -110,7 +110,7 @@ export class CDNApiStack extends Stack {
           origin: new HttpOrigin(
             `${apiGatewayId}.execute-api.${apiRegion}.amazonaws.com`,
             {
-              originPath: '/prod',
+              originPath: `/${stackEnv.toLowerCase()}`,
               customHeaders: { [apiAuthHeaderKey]: apiAuthHeaderValue },
             }
           ),

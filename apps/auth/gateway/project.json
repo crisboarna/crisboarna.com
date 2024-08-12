@@ -1,0 +1,72 @@
+{
+  "name": "auth-gateway",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/auth/gateway/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "sam:build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "concurrently --kill-others-on-fail -n build:nx,build:cdk \"nx build api-auth-gateway\" \"cdk synth --no-staging > cdk.out/api-gateway.yaml\""
+        ]
+      }
+    },
+    "sam:run": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "sam local invoke CRISBOARNA-Api-Auth-Gateway-DEV -n apps/api/auth/gateway/sam-env.json -e apps/api/auth/gateway/sam-event.json -t ./cdk.out/CRISBOARNA-Api-Auth-Gateway-DEV.template.json"
+        ]
+      }
+    },
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/auth/gateway",
+        "format": ["cjs"],
+        "bundle": true,
+        "main": "apps/auth/gateway/src/main.ts",
+        "tsConfig": "apps/auth/gateway/tsconfig.app.json",
+        "assets": ["apps/auth/gateway/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "auth-gateway:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "auth-gateway:build:development"
+        },
+        "production": {
+          "buildTarget": "auth-gateway:build:production"
+        }
+      }
+    }
+  }
+}

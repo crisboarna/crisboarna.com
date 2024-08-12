@@ -32,6 +32,7 @@ export type ICDNApiProps = {
 
 export type ICDNWebProps = {
   readonly artifactPathWeb: string;
+  readonly artifactPathWebAuth: string;
   readonly domainCertParamName: string;
   readonly domainName: string;
   readonly cdnParamNameWeb: string;

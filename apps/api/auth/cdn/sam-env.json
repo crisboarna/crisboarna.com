@@ -1,7 +1,0 @@
-{
-  "Parameters": {
-    "ENV": "DEV",
-    "INFRA_CDN_HEADER_AUTH_KEY": "Authorization",
-    "INFRA_CDN_HEADER_AUTH_VALUE": "/crisboarna/lambda/api/auth/cdn/challenge/"
-  }
-}

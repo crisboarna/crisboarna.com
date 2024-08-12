@@ -3,22 +3,18 @@ import { Construct } from 'constructs';
 import { APIStackProps } from '../../interfaces';
 import {
   CfnApi,
-  CfnApiMapping,
   CfnAuthorizer,
-  CfnDomainName,
   CfnIntegration,
   CfnRoute,
   CfnStage,
 } from 'aws-cdk-lib/aws-apigatewayv2';
 import {
   ENV,
-  PARAM_ACM_DOMAIN_ARN,
   PARAM_API_GW_ID,
   PARAM_LAMBDA_API_AUTH_GATEWAY_ALIAS_ARN,
+  PARAM_LAMBDA_API_CHAT_ALIAS_ARN,
   PARAM_LAMBDA_API_MAIN_ALIAS_ARN,
 } from '../../config';
-import { ARecord, HostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
-import { ApiGatewayv2DomainProperties } from 'aws-cdk-lib/aws-route53-targets';
 import { SSMUtil } from 'aws-cdk-lib-util';
 
 /**
@@ -35,10 +31,12 @@ export class APIStack extends Stack {
       // domainCertArn,
       lambdaApiMainArn,
       lambdaApiAuthGatewayArn,
+      lambdaApiChatArn,
     ] = [
       // PARAM_ACM_DOMAIN_ARN,
       PARAM_LAMBDA_API_MAIN_ALIAS_ARN,
       PARAM_LAMBDA_API_AUTH_GATEWAY_ALIAS_ARN,
+      PARAM_LAMBDA_API_CHAT_ALIAS_ARN,
     ].map(
       (paramName) => <string>SSMUtil.getSSMParameter({
           scope: this,
@@ -137,6 +135,17 @@ export class APIStack extends Stack {
       }
     );
 
+    const lambdaApiChatCfnIntegration = new CfnIntegration(
+      this,
+      `${projectName}-API-Chat-Integration-${stackEnv}`,
+      {
+        apiId: httpApi.ref,
+        integrationType: 'AWS_PROXY',
+        payloadFormatVersion: '1.0',
+        integrationUri: lambdaApiChatArn,
+      }
+    );
+
     new CfnRoute(this, `${projectName}-API-GW-Default-Route-${stackEnv}`, {
       apiId: httpApi.ref,
       routeKey: '$default',
@@ -148,6 +157,22 @@ export class APIStack extends Stack {
     new CfnRoute(this, `${projectName}-API-GW-CORS-Route-${stackEnv}`, {
       apiId: httpApi.ref,
       routeKey: 'OPTIONS /{proxy+}',
+    });
+
+    new CfnRoute(this, `${projectName}-API-GW-Chat-GET-Route-${stackEnv}`, {
+      apiId: httpApi.ref,
+      routeKey: 'GET /v1/chat/{proxy+}',
+      target: `integrations/${lambdaApiChatCfnIntegration.ref}`,
+      authorizationType: 'CUSTOM',
+      authorizerId: authorizer.ref,
+    });
+
+    new CfnRoute(this, `${projectName}-API-GW-Chat-POST-Route-${stackEnv}`, {
+      apiId: httpApi.ref,
+      routeKey: 'POST /v1/chat/{proxy+}',
+      target: `integrations/${lambdaApiChatCfnIntegration.ref}`,
+      authorizationType: 'CUSTOM',
+      authorizerId: authorizer.ref,
     });
 
     new CfnStage(this, `${projectName}-Stage-${stackEnv}`, {

@@ -1,0 +1,56 @@
+{
+  "name": "api-chat",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api/chat/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/api/chat",
+        "format": ["cjs"],
+        "bundle": true,
+        "main": "apps/api/chat/src/main.ts",
+        "tsConfig": "apps/api/chat/tsconfig.app.json",
+        "assets": ["apps/api/chat/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "api-chat:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "api-chat:build:development"
+        },
+        "production": {
+          "buildTarget": "api-chat:build:production"
+        }
+      }
+    }
+  }
+}

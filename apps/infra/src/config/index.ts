@@ -20,11 +20,13 @@ export const PARAM_CDN_ID_WEB = `cdn/id/web/`;
 //===LAMBDA===
 export const PARAM_LAMBDA_API_MAIN_ALIAS_ARN = `lambda/alias/arn/api/main/`;
 export const PARAM_LAMBDA_API_MAIN_ROLE_ARN = `lambda/role/arn/api/main/`;
-export const PARAM_LAMBDA_API_AUTH_GATEWAY_ALIAS_ARN = `lambda/alias/arn/api/auth/gateway/`;
-export const PARAM_LAMBDA_API_AUTH_GATEWAY_ROLE_ARN = `lambda/role/arn/api/auth/gateway/`;
-export const PARAM_LAMBDA_API_AUTH_CDN_ALIAS_ARN = `lambda/alias/arn/api/auth/cdn/`;
-export const PARAM_LAMBDA_API_AUTH_CDN_ROLE_ARN = `lambda/role/arn/api/auth/cdn/`;
-export const PARAM_LAMBDA_API_AUTH_CDN_VERSION_ARN = `lambda/version/arn/api/auth/cdn/`;
+export const PARAM_LAMBDA_API_CHAT_ALIAS_ARN = `lambda/alias/arn/api/chat/`;
+export const PARAM_LAMBDA_API_CHAT_ROLE_ARN = `lambda/role/arn/api/chat/`;
+export const PARAM_LAMBDA_API_AUTH_GATEWAY_ALIAS_ARN = `lambda/alias/arn/auth/gateway/`;
+export const PARAM_LAMBDA_API_AUTH_GATEWAY_ROLE_ARN = `lambda/role/arn/auth/gateway/`;
+export const PARAM_LAMBDA_API_AUTH_CDN_ALIAS_ARN = `lambda/alias/arn/auth/cdn/`;
+export const PARAM_LAMBDA_API_AUTH_CDN_ROLE_ARN = `lambda/role/arn/auth/cdn/`;
+export const PARAM_LAMBDA_API_AUTH_CDN_VERSION_ARN = `lambda/version/arn/auth/cdn/`;
 
 //===SNS===
 export const PARAM_SNS_ALARMS_ARN = `sns/alarms/arn/`;

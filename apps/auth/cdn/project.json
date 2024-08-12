@@ -1,0 +1,68 @@
+{
+  "name": "auth-cdn",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/auth/cdn/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/auth/cdn",
+        "format": ["cjs"],
+        "bundle": true,
+        "thirdParty": true,
+        "external": ["@aws-sdk/*"],
+        "main": "apps/auth/cdn/src/main.ts",
+        "tsConfig": "apps/auth/cdn/tsconfig.app.json",
+        "generatePackageJson": false,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {
+          "assets": [{
+            "glob": "index.ts",
+            "input": "apps/auth/cdn/src/assets/dev",
+            "output": "assets"
+          }]
+        },
+        "production": {
+          "assets": [{
+            "glob": "index.ts",
+            "input": "apps/auth/cdn/src/assets/prod",
+            "output": "assets"
+          }],
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "auth-cdn:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "auth-cdn:build:development"
+        },
+        "production": {
+          "buildTarget": "auth-cdn:build:production"
+        }
+      }
+    }
+  }
+}

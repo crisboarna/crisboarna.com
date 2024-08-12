@@ -1,6 +1,7 @@
 import React from 'react';
 import Iframe from 'react-iframe';
 import Header from '../../components/header';
+import {CV_URL} from "../../constants";
 
 export interface CVProps {
   readonly onDownload: () => void;
@@ -15,7 +16,7 @@ const CV = ({ onDownload }: CVProps) => (
       </div>
     </div>
     <Iframe
-      url={'https://cv.crisboarna.com/?buttons=false'}
+      url={`${CV_URL}/?buttons=false`}
       width={'100%'}
       frameBorder={0}
       className={'cv-container'}

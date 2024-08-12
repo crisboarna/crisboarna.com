@@ -1,5 +1,6 @@
 import React, { VFC } from 'react';
-import Lottie from 'react-lottie';
+// import Lottie from "lottie-react";
+import Lottie from 'react-lottie-player'
 import * as animationData from '../../assets/images/lottie/wave-motion.json';
 
 export interface LoadingProps {
@@ -9,16 +10,10 @@ export interface LoadingProps {
 const Loading: VFC<LoadingProps> = ({ style }) => (
   <div className={'centered'} style={style}>
     <Lottie
-      options={{
-        loop: true,
-        autoplay: true,
-        animationData: animationData,
-        rendererSettings: {
-          preserveAspectRatio: 'xMidYMid slice',
-        },
-      }}
-      height={400}
-      width={400}
+        loop={true}
+        play={true}
+        animationData={animationData}
+        style={{ width: 400, height: 400 }}
     />
   </div>
 );

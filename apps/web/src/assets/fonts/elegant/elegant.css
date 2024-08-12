@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'ElegantIcons';
-	src:url('apps/web/src/assets/fonts/elegant/ElegantIcons.eot');
-	src:url('apps/web/src/assets/fonts/elegant/ElegantIcons.eot?#iefix') format('embedded-opentype'),
-		url('apps/web/src/assets/fonts/elegant/ElegantIcons.woff') format('woff'),
-		url('apps/web/src/assets/fonts/elegant/ElegantIcons.ttf') format('truetype'),
-		url('apps/web/src/assets/fonts/elegant/ElegantIcons.svg#ElegantIcons') format('svg');
+	src:url('assets/fonts/elegant/ElegantIcons.eot');
+	src:url('assets/fonts/elegant/ElegantIcons.eot?#iefix') format('embedded-opentype'),
+		url('assets/fonts/elegant/ElegantIcons.woff') format('woff'),
+		url('assets/fonts/elegant/ElegantIcons.ttf') format('truetype'),
+		url('assets/fonts/elegant/ElegantIcons.svg#ElegantIcons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -1156,4 +1156,4 @@ text-shadow: none;
 		font-size: 2em;
 	}
 
-	
+

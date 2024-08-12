@@ -6,11 +6,13 @@ import {
   PARAM_LAMBDA_API_AUTH_CDN_VERSION_ARN,
   PARAM_LAMBDA_API_AUTH_GATEWAY_ALIAS_ARN,
   PARAM_LAMBDA_API_AUTH_GATEWAY_ROLE_ARN,
+  PARAM_LAMBDA_API_CHAT_ALIAS_ARN,
+  PARAM_LAMBDA_API_CHAT_ROLE_ARN,
   PARAM_LAMBDA_API_MAIN_ALIAS_ARN,
   PARAM_LAMBDA_API_MAIN_ROLE_ARN,
   PARAM_SNS_ALARMS_ARN,
 } from './index';
-import { Runtime } from 'aws-cdk-lib/aws-lambda';
+import {Architecture, Runtime} from 'aws-cdk-lib/aws-lambda';
 import { getApiIAMPolicies } from '../lib/lambda/util';
 import { Effect, PolicyStatement, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import {
@@ -71,13 +73,47 @@ export const lambdaApiMain: LambdaProps = {
   isInVpc: false,
   isProvisioned: false,
   managedPolicies: ['service-role/AWSLambdaBasicExecutionRole'],
+  architecture: Architecture.ARM_64,
   memorySize: 128,
   name: `${APIConstants.PROJECT_NAME}-${nameCapitalizedApiMain}`,
   paramName: PARAM_LAMBDA_API_MAIN_ALIAS_ARN,
   paramNameRole: PARAM_LAMBDA_API_MAIN_ROLE_ARN,
-  runtime: Runtime.NODEJS_16_X,
+  runtime: Runtime.NODEJS_20_X,
   policies: (env, stackEnv) =>
     getApiIAMPolicies(lambdaNameApiMain)(
+      env,
+      APIConstants.PROJECT_NAME,
+      stackEnv
+    ),
+};
+
+//===Chat===
+const lambdaNameApiChat = 'chat';
+const artifactPathApiChat = path.join(
+  __dirname,
+  `${rootArtifactApiPath}/${lambdaNameApiChat}`
+);
+const nameCapitalizedApiChat = `${CDKStringUtil.capitalizeInputString(
+  subPathApi
+)}-${CDKStringUtil.capitalizeInputString(lambdaNameApiChat)}`;
+
+export const lambdaApiChat: LambdaProps = {
+  alarmTopicParam: PARAM_SNS_ALARMS_ARN,
+  artifactPath: artifactPathApiChat,
+  environmentGeneration: () => ({
+    APP_NAME: nameCapitalizedApiChat,
+  }),
+  isInVpc: false,
+  isProvisioned: false,
+  managedPolicies: ['service-role/AWSLambdaBasicExecutionRole'],
+  architecture: Architecture.ARM_64,
+  memorySize: 128,
+  name: `${APIConstants.PROJECT_NAME}-${nameCapitalizedApiChat}`,
+  paramName: PARAM_LAMBDA_API_CHAT_ALIAS_ARN,
+  paramNameRole: PARAM_LAMBDA_API_CHAT_ROLE_ARN,
+  runtime: Runtime.NODEJS_20_X,
+  policies: (env, stackEnv) =>
+    getApiIAMPolicies(lambdaNameApiChat)(
       env,
       APIConstants.PROJECT_NAME,
       stackEnv
@@ -88,22 +124,20 @@ export const lambdaApiMain: LambdaProps = {
 const subPathAuth = 'auth';
 
 //===Auth Gateway===
-const lambdaNameApiAuthGateway = 'gateway';
-const artifactPathApiAuthGateway = path.join(
+const lambdaNameAuthGateway = 'gateway';
+const artifactPathAuthGateway = path.join(
   __dirname,
-  `${rootArtifactApiPath}/${subPathAuth}/${lambdaNameApiAuthGateway}`
+  `${rootArtifactPath}/${subPathAuth}/${lambdaNameAuthGateway}`
 );
-const nameCapitalizedApiAuthGateway = `${CDKStringUtil.capitalizeInputString(
-  subPathApi
-)}-${CDKStringUtil.capitalizeInputString(
+const nameCapitalizedAuthGateway = `${CDKStringUtil.capitalizeInputString(
   subPathAuth
-)}-${CDKStringUtil.capitalizeInputString(lambdaNameApiAuthGateway)}`;
+)}-${CDKStringUtil.capitalizeInputString(lambdaNameAuthGateway)}`;
 
-export const lambdaApiAuthGateway: LambdaProps = {
+export const lambdaAuthGateway: LambdaProps = {
   alarmTopicParam: PARAM_SNS_ALARMS_ARN,
-  artifactPath: artifactPathApiAuthGateway,
+  artifactPath: artifactPathAuthGateway,
   environmentGeneration: () => ({
-    APP_NAME: nameCapitalizedApiAuthGateway,
+    APP_NAME: nameCapitalizedAuthGateway,
     [APIConstants.INFRA_GATEWAY_HEADER_AUTH_KEY]:
       process.env[APIConstants.INFRA_GATEWAY_HEADER_AUTH_KEY],
     [APIConstants.INFRA_GATEWAY_HEADER_AUTH_VALUE]:
@@ -114,13 +148,14 @@ export const lambdaApiAuthGateway: LambdaProps = {
   isInVpc: false,
   isProvisioned: false,
   managedPolicies: ['service-role/AWSLambdaBasicExecutionRole'],
+  architecture: Architecture.X86_64,
   memorySize: 128,
-  name: `${APIConstants.PROJECT_NAME}-${nameCapitalizedApiAuthGateway}`,
+  name: `${APIConstants.PROJECT_NAME}-${nameCapitalizedAuthGateway}`,
   paramName: PARAM_LAMBDA_API_AUTH_GATEWAY_ALIAS_ARN,
   paramNameRole: PARAM_LAMBDA_API_AUTH_GATEWAY_ROLE_ARN,
-  runtime: Runtime.NODEJS_16_X,
+  runtime: Runtime.NODEJS_20_X,
   policies: (env, stackEnv) =>
-    getApiIAMPolicies(lambdaNameApiAuthGateway)(
+    getApiIAMPolicies(lambdaNameAuthGateway)(
       env,
       APIConstants.PROJECT_NAME,
       stackEnv
@@ -128,20 +163,18 @@ export const lambdaApiAuthGateway: LambdaProps = {
 };
 
 //===Auth CDN===
-const lambdaNameApiAuthCdn = 'cdn';
-const artifactPathApiAuthCdn = path.join(
+const lambdaNameAuthCdn = 'cdn';
+const artifactPathAuthCdn = path.join(
   __dirname,
-  `${rootArtifactApiPath}/${subPathAuth}/${lambdaNameApiAuthCdn}`
+  `${rootArtifactPath}/${subPathAuth}/${lambdaNameAuthCdn}`
 );
-const nameCapitalizedApiAuthCdn = `${CDKStringUtil.capitalizeInputString(
-  subPathApi
-)}-${CDKStringUtil.capitalizeInputString(
+const nameCapitalizedAuthCdn = `${CDKStringUtil.capitalizeInputString(
   subPathAuth
-)}-${CDKStringUtil.capitalizeInputString(lambdaNameApiAuthCdn)}`;
+)}-${CDKStringUtil.capitalizeInputString(lambdaNameAuthCdn)}`;
 
-export const lambdaApiAuthCdn: LambdaProps = {
+export const lambdaAuthCdn: LambdaProps = {
   alarmTopicParam: PARAM_SNS_ALARMS_ARN,
-  artifactPath: artifactPathApiAuthCdn,
+  artifactPath: artifactPathAuthCdn,
   environmentGenerationDefaults: false,
   extraActions: ({ scope, lambdaVersion, lambdaRole, stackEnv }) => {
     lambdaRole.assumeRolePolicy.addStatements(
@@ -188,13 +221,14 @@ export const lambdaApiAuthCdn: LambdaProps = {
   generateDlq: false,
   managedPolicies: ['service-role/AWSLambdaBasicExecutionRole'],
   memorySize: 128,
+  architecture: Architecture.X86_64,
   timeout: 3,
-  name: `${APIConstants.PROJECT_NAME}-${nameCapitalizedApiAuthCdn}`,
+  name: `${APIConstants.PROJECT_NAME}-${nameCapitalizedAuthCdn}`,
   paramName: PARAM_LAMBDA_API_AUTH_CDN_ALIAS_ARN,
   paramNameRole: PARAM_LAMBDA_API_AUTH_CDN_ROLE_ARN,
-  runtime: Runtime.NODEJS_16_X,
+  runtime: Runtime.NODEJS_20_X,
   policies: (env, stackEnv) =>
-    getApiIAMPolicies(lambdaNameApiAuthCdn)(
+    getApiIAMPolicies(lambdaNameAuthCdn)(
       env,
       APIConstants.PROJECT_NAME,
       stackEnv
